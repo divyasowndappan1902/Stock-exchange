@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stackly - Customer Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="dashboard-layout">
+        <div class="sidebar-overlay"></div>
+        
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-header" style="display: flex; justify-content: space-between; width: 100%;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <img src="assets/images/logo.webp" alt="Stackly">
+                    <span>Stackly</span>
+                </div>
+                <div class="sidebar-close-btn" style="display: none; cursor: pointer; color: white;">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="customer-dashboard.html" class="sidebar-link active" data-target="section-portfolio">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                    Portfolio
+                </a>
+                <a href="#" class="sidebar-link" data-target="section-market">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                    Market Data
+                </a>
+                <a href="#" class="sidebar-link" data-target="section-history">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                    Trade History
+                </a>
+                <a href="#" class="sidebar-link" data-target="section-transfers">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+                    Transfers
+                </a>
+                <a href="#" class="sidebar-link" data-target="section-settings">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    Settings
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="login.html" class="logout-btn">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                    Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            
+            <!-- Topbar -->
+            <header class="dashboard-topbar">
+                <div class="mobile-sidebar-toggle">
+                    <svg id="hamburger-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    <svg id="close-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="24" height="24" style="display: none;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </div>
+                <div class="topbar-title">Customer Overview</div>
+                <div class="topbar-search">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    <input type="text" placeholder="Search tickers, news, etc...">
+                </div>
+                
+                <div class="topbar-actions">
+                    <div style="font-weight:700; color:var(--accent-color); border:1px solid rgba(140, 216, 188, 0.3); padding:8px 15px; border-radius:20px; font-size:14px;">
+                        Buying Power: $12,450.00
+                    </div>
+                    <div class="action-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="22" height="22"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+                    </div>
+                    <div class="user-profile">
+                        <div class="user-info" style="text-align:right;">
+                            <span class="user-name" id="dynamic-user-name">Alex Johnson</span>
+                            <span class="user-role" id="dynamic-user-role">Pro Tier</span>
+                            <span class="user-email" id="dynamic-user-email">alex@stackly.com</span>
+                        </div>
+                        <div class="user-avatar" style="background:var(--secondary-color); color:white;">AJ</div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <div class="dashboard-content">
+                
+                <div id="section-portfolio" class="content-section active">
+                    <div class="dashboard-header">
+                    <h1>My Portfolio</h1>
+                    <p>Track your assets, analyze performance, and execute trades.</p>
+                </div>
+
+                <!-- Portfolio Value -->
+                <div class="panel" style="margin-bottom:40px; background:linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(140, 216, 188, 0.05) 100%);">
+                    <div style="display:flex; justify-content:space-between; align-items:flex-end;">
+                        <div>
+                            <span style="color:var(--text-muted); font-size:16px;">Total Portfolio Value</span>
+                            <div style="font-size:48px; font-weight:800; color:white; margin-top:5px; margin-bottom:10px;">$142,854.30</div>
+                            <div style="display:flex; align-items:center; gap:10px; font-weight:600;">
+                                <span class="trend-up" style="display:flex; align-items:center; background:rgba(74, 222, 128, 0.1); padding:5px 10px; border-radius:20px;">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16" style="margin-right:5px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+                                    +$3,240.50 (2.3%)
+                                </span>
+                                <span style="color:var(--text-muted); font-size:14px;">Today</span>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="cta-btn" style="padding:12px 25px; font-size:15px;">Deposit Funds</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid-2">
+                    
+                    <!-- Watchlist -->
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h2 class="panel-title">My Watchlist</h2>
+                            <a href="#" class="panel-action">Edit</a>
+                        </div>
+                        
+                        <div style="display:flex; flex-direction:column; gap:15px;">
+                            <div style="display:flex; justify-content:space-between; align-items:center; padding:15px; background:rgba(255,255,255,0.02); border-radius:12px; border:1px solid rgba(255,255,255,0.05);">
+                                <div style="display:flex; align-items:center; gap:15px;">
+                                    <div style="width:40px; height:40px; border-radius:8px; background:#f7931a; display:flex; align-items:center; justify-content:center;">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M14.65 11.23c1.37-.53 2.1-1.57 2.1-2.9 0-2.3-1.85-3.33-4.9-3.33H6v14h6.24c3.42 0 5.46-1.12 5.46-3.66 0-1.63-.98-2.82-3.05-3.41v-.7zm-5.85-3.8h2.64c1.47 0 2.22.42 2.22 1.48 0 1.05-.75 1.5-2.22 1.5H8.8v-2.98zm3.03 8.37H8.8v-3.38h3.03c1.65 0 2.5.47 2.5 1.68 0 1.2-.85 1.7-2.5 1.7z"/></svg>
+                                    </div>
+                                    <div>
+                                        <div style="font-weight:700; color:white;">BTC</div>
+                                        <div style="color:var(--text-muted); font-size:13px;">Bitcoin</div>
+                                    </div>
+                                </div>
+                                <div style="text-align:right;">
+                                    <div style="font-weight:700; color:white;">$64,230.00</div>
+                                    <div class="trend-up" style="font-size:13px;">+1.2%</div>
+                                </div>
+                            </div>
+
+                            <div style="display:flex; justify-content:space-between; align-items:center; padding:15px; background:rgba(255,255,255,0.02); border-radius:12px; border:1px solid rgba(255,255,255,0.05);">
+                                <div style="display:flex; align-items:center; gap:15px;">
+                                    <div style="width:40px; height:40px; border-radius:8px; background:#627eea; display:flex; align-items:center; justify-content:center;">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M11.944 17.97L4.58 13.62 11.943 24l7.37-10.38-7.372 4.35h.003zM12.056 0L4.69 12.22l7.365 4.354 7.365-4.35L12.056 0z"/></svg>
+                                    </div>
+                                    <div>
+                                        <div style="font-weight:700; color:white;">ETH</div>
+                                        <div style="color:var(--text-muted); font-size:13px;">Ethereum</div>
+                                    </div>
+                                </div>
+                                <div style="text-align:right;">
+                                    <div style="font-weight:700; color:white;">$3,450.20</div>
+                                    <div class="trend-down" style="font-size:13px;">-0.8%</div>
+                                </div>
+                            </div>
+
+                            <div style="display:flex; justify-content:space-between; align-items:center; padding:15px; background:rgba(255,255,255,0.02); border-radius:12px; border:1px solid rgba(255,255,255,0.05);">
+                                <div style="display:flex; align-items:center; gap:15px;">
+                                    <div style="width:40px; height:40px; border-radius:8px; background:#000000; border:1px solid rgba(255,255,255,0.2); display:flex; align-items:center; justify-content:center;">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.989C18.343 21.129 22 16.99 22 12c0-5.523-4.477-10-10-10z"/></svg>
+                                    </div>
+                                    <div>
+                                        <div style="font-weight:700; color:white;">META</div>
+                                        <div style="color:var(--text-muted); font-size:13px;">Meta Platforms</div>
+                                    </div>
+                                </div>
+                                <div style="text-align:right;">
+                                    <div style="font-weight:700; color:white;">$485.10</div>
+                                    <div class="trend-up" style="font-size:13px;">+3.4%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Transactions -->
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h2 class="panel-title">Recent Transactions</h2>
+                            <a href="#" class="panel-action">View History</a>
+                        </div>
+                        
+                        <div style="display:flex; flex-direction:column; gap:20px;">
+                            <div style="display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:15px;">
+                                <div style="display:flex; align-items:center; gap:15px;">
+                                    <div style="width:36px; height:36px; border-radius:50%; background:rgba(74, 222, 128, 0.1); color:#4ade80; display:flex; align-items:center; justify-content:center;">
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+                                    </div>
+                                    <div>
+                                        <div style="color:white; font-weight:600;">Deposit</div>
+                                        <div style="color:var(--text-muted); font-size:12px;">Today, 10:24 AM</div>
+                                    </div>
+                                </div>
+                                <div style="font-weight:700; color:#4ade80;">+$5,000.00</div>
+                            </div>
+                            
+                            <div style="display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:15px;">
+                                <div style="display:flex; align-items:center; gap:15px;">
+                                    <div style="width:36px; height:36px; border-radius:50%; background:rgba(255, 255, 255, 0.05); color:white; display:flex; align-items:center; justify-content:center;">
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                                    </div>
+                                    <div>
+                                        <div style="color:white; font-weight:600;">Bought META</div>
+                                        <div style="color:var(--text-muted); font-size:12px;">Yesterday, 2:15 PM</div>
+                                    </div>
+                                </div>
+                                <div style="text-align:right;">
+                                    <div style="font-weight:700; color:white;">-$2,425.50</div>
+                                    <div style="color:var(--text-muted); font-size:12px;">5 Shares</div>
+                                </div>
+                            </div>
+
+                            <div style="display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:15px;">
+                                <div style="display:flex; align-items:center; gap:15px;">
+                                    <div style="width:36px; height:36px; border-radius:50%; background:rgba(255, 255, 255, 0.05); color:white; display:flex; align-items:center; justify-content:center;">
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                                    </div>
+                                    <div>
+                                        <div style="color:white; font-weight:600;">Sold TSLA</div>
+                                        <div style="color:var(--text-muted); font-size:12px;">Oct 12, 9:30 AM</div>
+                                    </div>
+                                </div>
+                                <div style="text-align:right;">
+                                    <div style="font-weight:700; color:#4ade80;">+$1,850.00</div>
+                                    <div style="color:var(--text-muted); font-size:12px;">10 Shares</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                </div>
+
+                <div id="section-market" class="content-section">
+                    <div class="dashboard-header">
+                        <h1>Market Data</h1>
+                        <p>Real-time analytics and global market trends.</p>
+                    </div>
+                    <div class="panel">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Asset</th>
+                                    <th>Price</th>
+                                    <th>24h Change</th>
+                                    <th>Market Cap</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div style="display:flex; align-items:center; gap:10px;">
+                                            <div style="width:32px; height:32px; background:rgba(247,147,26,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center; color:#f7931a; font-weight:bold;">₿</div>
+                                            <div>
+                                                <div style="font-weight: 600;">Bitcoin</div>
+                                                <div style="font-size: 12px; color: var(--text-muted);">BTC</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="font-weight: 600;">$64,230.50</td>
+                                    <td style="color: #4ade80;">+2.45%</td>
+                                    <td>$1.2T</td>
+                                    <td><button class="cta-btn" style="padding: 6px 15px; font-size: 13px;">Trade</button></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="display:flex; align-items:center; gap:10px;">
+                                            <div style="width:32px; height:32px; background:rgba(98,126,234,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center; color:#627eea; font-weight:bold;">Ξ</div>
+                                            <div>
+                                                <div style="font-weight: 600;">Ethereum</div>
+                                                <div style="font-size: 12px; color: var(--text-muted);">ETH</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="font-weight: 600;">$3,450.20</td>
+                                    <td style="color: #f87171;">-1.12%</td>
+                                    <td>$415B</td>
+                                    <td><button class="cta-btn" style="padding: 6px 15px; font-size: 13px;">Trade</button></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="display:flex; align-items:center; gap:10px;">
+                                            <div style="width:32px; height:32px; background:rgba(0,255,163,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center; color:#00ffa3; font-weight:bold;">S</div>
+                                            <div>
+                                                <div style="font-weight: 600;">Solana</div>
+                                                <div style="font-size: 12px; color: var(--text-muted);">SOL</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="font-weight: 600;">$145.80</td>
+                                    <td style="color: #4ade80;">+5.67%</td>
+                                    <td>$65B</td>
+                                    <td><button class="cta-btn" style="padding: 6px 15px; font-size: 13px;">Trade</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="section-history" class="content-section">
+                    <div class="dashboard-header">
+                        <h1>Trade History</h1>
+                        <p>Your past transactions and order executions.</p>
+                    </div>
+                    <div class="panel">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Pair</th>
+                                    <th>Type</th>
+                                    <th>Amount</th>
+                                    <th>Price</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Today, 14:30</td>
+                                    <td style="font-weight: 600;">BTC/USD</td>
+                                    <td style="color: #4ade80;">Buy</td>
+                                    <td>0.05 BTC</td>
+                                    <td>$64,100</td>
+                                    <td>$3,205.00</td>
+                                    <td><span class="status-badge status-completed">Filled</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Yesterday, 09:15</td>
+                                    <td style="font-weight: 600;">ETH/USD</td>
+                                    <td style="color: #f87171;">Sell</td>
+                                    <td>2.5 ETH</td>
+                                    <td>$3,500</td>
+                                    <td>$8,750.00</td>
+                                    <td><span class="status-badge status-completed">Filled</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Oct 12, 16:45</td>
+                                    <td style="font-weight: 600;">SOL/USD</td>
+                                    <td style="color: #4ade80;">Buy</td>
+                                    <td>50 SOL</td>
+                                    <td>$130</td>
+                                    <td>$6,500.00</td>
+                                    <td><span class="status-badge status-completed">Filled</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="section-transfers" class="content-section">
+                    <div class="dashboard-header">
+                        <h1>Transfers</h1>
+                        <p>Manage deposits, withdrawals, and bank connections.</p>
+                    </div>
+                    <div class="dashboard-grid-2">
+                        <div class="panel">
+                            <h2 class="panel-title" style="margin-bottom: 20px;">Deposit Funds</h2>
+                            <form>
+                                <div class="form-group">
+                                    <label style="display: block; margin-bottom: 8px; color: var(--text-muted); font-size: 14px;">Select Currency</label>
+                                    <select class="form-control" style="appearance: none; background: rgba(255,255,255,0.05); color: white;">
+                                        <option>USD - US Dollar</option>
+                                        <option>EUR - Euro</option>
+                                        <option>GBP - British Pound</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label style="display: block; margin-bottom: 8px; color: var(--text-muted); font-size: 14px;">Amount</label>
+                                    <input type="number" class="form-control" placeholder="Enter amount to deposit">
+                                </div>
+                                <button type="button" class="cta-btn" style="width: 100%;">Initiate Deposit</button>
+                            </form>
+                        </div>
+                        <div class="panel">
+                            <h2 class="panel-title" style="margin-bottom: 20px;">Withdraw Funds</h2>
+                            <form>
+                                <div class="form-group">
+                                    <label style="display: block; margin-bottom: 8px; color: var(--text-muted); font-size: 14px;">Withdraw to</label>
+                                    <select class="form-control" style="appearance: none; background: rgba(255,255,255,0.05); color: white;">
+                                        <option>Bank Account (**** 1234)</option>
+                                        <option>Add new bank account...</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label style="display: block; margin-bottom: 8px; color: var(--text-muted); font-size: 14px;">Amount (Available: $12,450.00)</label>
+                                    <input type="number" class="form-control" placeholder="Enter amount to withdraw">
+                                </div>
+                                <button type="button" class="cta-btn" style="width: 100%; background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color);">Request Withdrawal</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="section-settings" class="content-section">
+                    <div class="dashboard-header">
+                        <h1>Settings</h1>
+                        <p>Manage your account preferences and security.</p>
+                    </div>
+                    <div class="panel" style="max-width: 600px;">
+                        <form>
+                            <div class="form-group">
+                                <label style="display: block; margin-bottom: 8px; color: var(--text-muted); font-size: 14px;">Full Name</label>
+                                <input type="text" class="form-control" value="John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label style="display: block; margin-bottom: 8px; color: var(--text-muted); font-size: 14px;">Email Address</label>
+                                <input type="email" class="form-control" value="john.doe@example.com">
+                            </div>
+                            <div class="form-group" style="display: flex; align-items: center; justify-content: space-between; padding: 15px 0; border-top: 1px solid rgba(255,255,255,0.05);">
+                                <div>
+                                    <div style="font-weight: 600; color: white;">Two-Factor Authentication (2FA)</div>
+                                    <div style="font-size: 13px; color: var(--text-muted);">Secure your account with an authenticator app.</div>
+                                </div>
+                                <div style="width: 40px; height: 20px; background: var(--accent-color); border-radius: 10px; position: relative; cursor: pointer;">
+                                    <div style="width: 16px; height: 16px; background: var(--primary-color); border-radius: 50%; position: absolute; top: 2px; right: 2px;"></div>
+                                </div>
+                            </div>
+                            <div class="form-group" style="display: flex; align-items: center; justify-content: space-between; padding: 15px 0; border-top: 1px solid rgba(255,255,255,0.05);">
+                                <div>
+                                    <div style="font-weight: 600; color: white;">Email Notifications</div>
+                                    <div style="font-size: 13px; color: var(--text-muted);">Receive trade confirmations and deposit receipts.</div>
+                                </div>
+                                <div style="width: 40px; height: 20px; background: var(--accent-color); border-radius: 10px; position: relative; cursor: pointer;">
+                                    <div style="width: 16px; height: 16px; background: var(--primary-color); border-radius: 50%; position: absolute; top: 2px; right: 2px;"></div>
+                                </div>
+                            </div>
+                            <div class="form-group" style="display: flex; align-items: center; justify-content: space-between; padding: 15px 0; border-top: 1px solid rgba(255,255,255,0.05);">
+                                <div>
+                                    <div style="font-weight: 600; color: white;">SMS Alerts</div>
+                                    <div style="font-size: 13px; color: var(--text-muted);">Get critical security alerts via text message.</div>
+                                </div>
+                                <div style="width: 40px; height: 20px; background: rgba(255,255,255,0.1); border-radius: 10px; position: relative; cursor: pointer;">
+                                    <div style="width: 16px; height: 16px; background: var(--text-muted); border-radius: 50%; position: absolute; top: 2px; left: 2px;"></div>
+                                </div>
+                            </div>
+                            <button type="button" class="cta-btn" style="margin-top: 20px;">Save Profile</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        document.querySelectorAll('.sidebar-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (this.getAttribute('href') === '#' || this.hasAttribute('data-target')) {
+                    e.preventDefault();
+                }
+                
+                document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+                
+                const targetId = this.getAttribute('data-target');
+                if (targetId) {
+                    document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
+                    const targetEl = document.getElementById(targetId);
+                    if (targetEl) targetEl.classList.add('active');
+                }
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const userEmail = localStorage.getItem('userEmail');
+            if (userEmail) {
+                const emailEl = document.getElementById('dynamic-user-email');
+                if (emailEl) emailEl.textContent = userEmail;
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileToggle = document.querySelector('.mobile-sidebar-toggle');
+            const sidebar = document.querySelector('.dashboard-sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+
+            if (mobileToggle && sidebar && overlay) {
+                const hamburgerIcon = document.getElementById('hamburger-icon');
+                const closeIcon = document.getElementById('close-icon');
+                const sidebarCloseBtn = document.querySelector('.sidebar-close-btn');
+
+                const toggleMenu = () => {
+                    const isOpen = sidebar.classList.toggle('open');
+                    overlay.classList.toggle('active');
+                    if (hamburgerIcon && closeIcon) {
+                        hamburgerIcon.style.display = isOpen ? 'none' : 'block';
+                        // Keep close icon hidden on the topbar since we have it in the sidebar now
+                        closeIcon.style.display = 'none'; 
+                    }
+                };
+
+                mobileToggle.addEventListener('click', toggleMenu);
+                if (sidebarCloseBtn) sidebarCloseBtn.addEventListener('click', toggleMenu);
+
+                overlay.addEventListener('click', () => {
+                    if (sidebar.classList.contains('open')) toggleMenu();
+                });
+                
+                document.querySelectorAll('.sidebar-link').forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (window.innerWidth <= 768 && sidebar.classList.contains('open')) {
+                            toggleMenu();
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+    <script src="dummy-handler.js"></script>
+</body>
+</html>

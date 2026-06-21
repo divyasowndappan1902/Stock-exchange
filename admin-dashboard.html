@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stackly - Admin Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="dashboard-layout">
+        <div class="sidebar-overlay"></div>
+        
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-header" style="display: flex; justify-content: space-between; width: 100%;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <img src="assets/images/logo.webp" alt="Stackly">
+                    <span>Stackly</span>
+                </div>
+                <div class="sidebar-close-btn" style="display: none; cursor: pointer; color: white;">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="admin-dashboard.html" class="sidebar-link active" data-target="section-dashboard">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                    Dashboard
+                </a>
+                <a href="#" class="sidebar-link" data-target="section-users">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    User Management
+                </a>
+                <a href="#" class="sidebar-link" data-target="section-approvals">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    Trade Approvals
+                </a>
+                <a href="#" class="sidebar-link" data-target="section-compliance">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    Compliance
+                </a>
+                <a href="#" class="sidebar-link" data-target="section-settings">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    Settings
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="login.html" class="logout-btn">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                    Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            
+            <!-- Topbar -->
+            <header class="dashboard-topbar">
+                <div class="mobile-sidebar-toggle">
+                    <svg id="hamburger-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    <svg id="close-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="24" height="24" style="display: none;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </div>
+                <div class="topbar-title">Admin Overview</div>
+                <div class="topbar-search">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    <input type="text" placeholder="Search users, IDs, emails...">
+                </div>
+                
+                <div class="topbar-actions">
+                    <div class="action-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="22" height="22"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+                        <span class="badge">3</span>
+                    </div>
+                    <div class="user-profile">
+                        <div class="user-info">
+                            <span class="user-name" id="dynamic-user-name">Admin User</span>
+                            <span class="user-role" id="dynamic-user-role">Super Admin</span>
+                            <span class="user-email" id="dynamic-user-email">admin@stackly.com</span>
+                        </div>
+                        <div class="user-avatar">A</div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <div class="dashboard-content">
+                
+                <div id="section-dashboard" class="content-section active">
+                    <div class="dashboard-header">
+                    <h1>Overview</h1>
+                    <p>Welcome back, here's what's happening today.</p>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        </div>
+                        <div class="stat-details">
+                            <span class="stat-label">Total Users</span>
+                            <span class="stat-value">12,543</span>
+                            <span class="stat-trend trend-up"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="12" height="12"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg> +12%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <div class="stat-details">
+                            <span class="stat-label">Daily Volume</span>
+                            <span class="stat-value">$4.2M</span>
+                            <span class="stat-trend trend-up"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="12" height="12"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg> +5.4%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                        </div>
+                        <div class="stat-details">
+                            <span class="stat-label">Active Trades</span>
+                            <span class="stat-value">842</span>
+                            <span class="stat-trend trend-down"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="12" height="12"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg> -1.2%</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                        </div>
+                        <div class="stat-details">
+                            <span class="stat-label">System Alerts</span>
+                            <span class="stat-value">3</span>
+                            <span class="stat-trend" style="color:var(--text-muted)">Requires action</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid-2">
+                    
+                    <!-- Recent Activity Table -->
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h2 class="panel-title">Recent User Activity</h2>
+                            <a href="#" class="panel-action">View All</a>
+                        </div>
+                        
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th>Action</th>
+                                    <th>Status</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div style="display:flex; align-items:center; gap:10px;">
+                                            <div style="width:30px; height:30px; background:rgba(255,255,255,0.1); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px;">JS</div>
+                                            John Smith
+                                        </div>
+                                    </td>
+                                    <td>Account Registration</td>
+                                    <td><span class="status-badge status-completed">Completed</span></td>
+                                    <td>2 mins ago</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="display:flex; align-items:center; gap:10px;">
+                                            <div style="width:30px; height:30px; background:rgba(255,255,255,0.1); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px;">EW</div>
+                                            Emma Watson
+                                        </div>
+                                    </td>
+                                    <td>Wire Transfer ($50k)</td>
+                                    <td><span class="status-badge status-pending">Pending Approval</span></td>
+                                    <td>15 mins ago</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="display:flex; align-items:center; gap:10px;">
+                                            <div style="width:30px; height:30px; background:rgba(255,255,255,0.1); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px;">MR</div>
+                                            Michael Ross
+                                        </div>
+                                    </td>
+                                    <td>Margin Call Warning</td>
+                                    <td><span class="status-badge status-failed">Alert</span></td>
+                                    <td>1 hr ago</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="display:flex; align-items:center; gap:10px;">
+                                            <div style="width:30px; height:30px; background:rgba(255,255,255,0.1); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px;">LB</div>
+                                            Lisa Bonet
+                                        </div>
+                                    </td>
+                                    <td>BTC Purchase (2.5)</td>
+                                    <td><span class="status-badge status-completed">Completed</span></td>
+                                    <td>2 hrs ago</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Placeholder Chart / System Status -->
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h2 class="panel-title">System Status</h2>
+                        </div>
+                        <div style="display:flex; flex-direction:column; gap:20px;">
+                            <div style="display:flex; justify-content:space-between; align-items:center;">
+                                <span style="color:var(--text-muted);">Trading Engine</span>
+                                <span style="color:#4ade80; display:flex; align-items:center; gap:5px;"><span style="width:8px; height:8px; border-radius:50%; background:#4ade80;"></span> Operational</span>
+                            </div>
+                            <div style="display:flex; justify-content:space-between; align-items:center;">
+                                <span style="color:var(--text-muted);">Market Data Feed</span>
+                                <span style="color:#4ade80; display:flex; align-items:center; gap:5px;"><span style="width:8px; height:8px; border-radius:50%; background:#4ade80;"></span> Operational</span>
+                            </div>
+                            <div style="display:flex; justify-content:space-between; align-items:center;">
+                                <span style="color:var(--text-muted);">Payment Gateway</span>
+                                <span style="color:#fbbc05; display:flex; align-items:center; gap:5px;"><span style="width:8px; height:8px; border-radius:50%; background:#fbbc05;"></span> Degraded</span>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top:40px;">
+                            <h2 class="panel-title" style="margin-bottom: 15px;">Server Load</h2>
+                            <!-- Pseudo Chart -->
+                            <div style="height: 120px; display:flex; align-items:flex-end; gap:5px; padding-top: 20px; border-bottom:1px solid rgba(255,255,255,0.1);">
+                                <div style="flex:1; background:var(--accent-color); height:30%; opacity:0.6; border-radius:3px 3px 0 0;"></div>
+                                <div style="flex:1; background:var(--accent-color); height:50%; opacity:0.6; border-radius:3px 3px 0 0;"></div>
+                                <div style="flex:1; background:var(--accent-color); height:40%; opacity:0.6; border-radius:3px 3px 0 0;"></div>
+                                <div style="flex:1; background:var(--accent-color); height:70%; opacity:0.8; border-radius:3px 3px 0 0;"></div>
+                                <div style="flex:1; background:var(--accent-color); height:60%; opacity:0.7; border-radius:3px 3px 0 0;"></div>
+                                <div style="flex:1; background:var(--accent-color); height:85%; opacity:1; border-radius:3px 3px 0 0;"></div>
+                                <div style="flex:1; background:var(--accent-color); height:65%; opacity:0.8; border-radius:3px 3px 0 0;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                </div>
+
+                <div id="section-users" class="content-section">
+                    <div class="dashboard-header">
+                        <h1>User Management</h1>
+                        <p>Manage platform users, roles, and permissions.</p>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <h2 class="panel-title">All Users</h2>
+                            <div style="display: flex; gap: 10px;">
+                                <input type="text" class="form-control" placeholder="Search users..." style="padding: 8px 12px; font-size: 13px;">
+                                <select class="form-control" style="padding: 8px 12px; font-size: 13px; appearance: none; background: rgba(255,255,255,0.05);">
+                                    <option>All Roles</option>
+                                    <option>Admin</option>
+                                    <option>Customer</option>
+                                </select>
+                                <button class="cta-btn" style="padding: 8px 15px; font-size: 13px;">+ Add User</button>
+                            </div>
+                        </div>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th>Role</th>
+                                    <th>Status</th>
+                                    <th>Last Login</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><div style="font-weight: 600;">Alice Wonderland</div><div style="font-size: 12px; color: var(--text-muted);">alice@example.com</div></td>
+                                    <td>Admin</td>
+                                    <td><span class="status-badge status-active">Active</span></td>
+                                    <td>Just now</td>
+                                    <td><a href="#" style="color: var(--accent-color); text-decoration: none;">Edit</a></td>
+                                </tr>
+                                <tr>
+                                    <td><div style="font-weight: 600;">Bob Builder</div><div style="font-size: 12px; color: var(--text-muted);">bob@example.com</div></td>
+                                    <td>Customer</td>
+                                    <td><span class="status-badge status-active">Active</span></td>
+                                    <td>2 hours ago</td>
+                                    <td><a href="#" style="color: var(--accent-color); text-decoration: none;">Edit</a></td>
+                                </tr>
+                                <tr>
+                                    <td><div style="font-weight: 600;">Charlie Chaplin</div><div style="font-size: 12px; color: var(--text-muted);">charlie@example.com</div></td>
+                                    <td>Customer</td>
+                                    <td><span class="status-badge status-failed">Suspended</span></td>
+                                    <td>3 days ago</td>
+                                    <td><a href="#" style="color: var(--accent-color); text-decoration: none;">Edit</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="section-approvals" class="content-section">
+                    <div class="dashboard-header">
+                        <h1>Trade Approvals</h1>
+                        <p>Review and approve high-value transactions.</p>
+                    </div>
+                    <div class="dashboard-grid-2">
+                        <div class="panel">
+                            <h2 class="panel-title" style="margin-bottom: 20px;">Pending Approvals (2)</h2>
+                            <div style="display: flex; flex-direction: column; gap: 15px;">
+                                <div style="background: rgba(255,255,255,0.02); padding: 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                                        <div>
+                                            <div style="font-weight: 600; color: white;">Withdrawal Request</div>
+                                            <div style="font-size: 13px; color: var(--text-muted);">User: Emma Watson</div>
+                                        </div>
+                                        <div style="font-weight: 700; color: #f87171;">$50,000.00</div>
+                                    </div>
+                                    <div style="display: flex; gap: 10px;">
+                                        <button style="flex: 1; background: var(--accent-color); color: var(--primary-color); border: none; padding: 10px; border-radius: 8px; font-weight: 600; cursor: pointer;">Approve</button>
+                                        <button style="flex: 1; background: transparent; color: white; border: 1px solid rgba(255,255,255,0.2); padding: 10px; border-radius: 8px; font-weight: 600; cursor: pointer;">Reject</button>
+                                    </div>
+                                </div>
+                                <div style="background: rgba(255,255,255,0.02); padding: 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                                        <div>
+                                            <div style="font-weight: 600; color: white;">BTC OTC Purchase</div>
+                                            <div style="font-size: 13px; color: var(--text-muted);">User: Bruce Wayne</div>
+                                        </div>
+                                        <div style="font-weight: 700; color: #4ade80;">15.0 BTC</div>
+                                    </div>
+                                    <div style="display: flex; gap: 10px;">
+                                        <button style="flex: 1; background: var(--accent-color); color: var(--primary-color); border: none; padding: 10px; border-radius: 8px; font-weight: 600; cursor: pointer;">Approve</button>
+                                        <button style="flex: 1; background: transparent; color: white; border: 1px solid rgba(255,255,255,0.2); padding: 10px; border-radius: 8px; font-weight: 600; cursor: pointer;">Reject</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="panel">
+                            <h2 class="panel-title" style="margin-bottom: 20px;">Recent Approval History</h2>
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Transaction</th>
+                                        <th>Status</th>
+                                        <th>Reviewed By</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Today, 10:15 AM</td>
+                                        <td>Wire Transfer ($120k)</td>
+                                        <td><span class="status-badge status-completed">Approved</span></td>
+                                        <td>Admin (Alice)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Yesterday, 4:30 PM</td>
+                                        <td>Suspicious BTC Withdrawal</td>
+                                        <td><span class="status-badge status-failed">Rejected</span></td>
+                                        <td>Admin (System)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="section-compliance" class="content-section">
+                    <div class="dashboard-header">
+                        <h1>Compliance</h1>
+                        <p>KYC/AML verification and regulatory reporting.</p>
+                    </div>
+                    <div class="dashboard-grid-2">
+                        <div class="panel">
+                            <h2 class="panel-title" style="margin-bottom: 15px;">Pending KYC Reviews</h2>
+                            <div style="display:flex; justify-content:space-between; padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                <div><div style="font-weight:600;">David Smith</div><div style="font-size:12px; color:var(--text-muted);">ID Match: 95%</div></div>
+                                <button class="cta-btn" style="padding: 5px 10px; font-size:12px;">Review</button>
+                            </div>
+                            <div style="display:flex; justify-content:space-between; padding: 12px;">
+                                <div><div style="font-weight:600;">Sarah Connor</div><div style="font-size:12px; color:var(--text-muted);">ID Match: 42% (Flagged)</div></div>
+                                <button class="cta-btn" style="padding: 5px 10px; font-size:12px; background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color);">Review</button>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <h2 class="panel-title" style="margin-bottom: 15px;">AML Alerts</h2>
+                            <div style="background: rgba(248, 113, 113, 0.1); border-left: 3px solid #f87171; padding: 15px; border-radius: 4px;">
+                                <div style="font-weight:600; color:#f87171;">Suspicious Transaction Pattern</div>
+                                <div style="font-size:13px; margin-top:5px; color:var(--text-muted);">Account ID #55982 initiated 15 crypto withdrawals in 2 hours just under the reporting threshold.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="section-settings" class="content-section">
+                    <div class="dashboard-header">
+                        <h1>Settings</h1>
+                        <p>Global platform configuration and preferences.</p>
+                    </div>
+                    <div class="panel" style="max-width: 600px;">
+                        <form>
+                            <div class="form-group">
+                                <label style="display: block; margin-bottom: 8px; color: var(--text-muted); font-size: 14px;">Platform Name</label>
+                                <input type="text" class="form-control" value="Stackly Exchange">
+                            </div>
+                            <div class="form-group">
+                                <label style="display: block; margin-bottom: 8px; color: var(--text-muted); font-size: 14px;">Support Email</label>
+                                <input type="email" class="form-control" value="support@stackly.com">
+                            </div>
+                            <div class="form-group" style="display: flex; align-items: center; justify-content: space-between; padding: 15px 0; border-top: 1px solid rgba(255,255,255,0.05);">
+                                <div>
+                                    <div style="font-weight: 600; color: white;">Maintenance Mode</div>
+                                    <div style="font-size: 13px; color: var(--text-muted);">Disable trading engine for all users.</div>
+                                </div>
+                                <div style="width: 40px; height: 20px; background: rgba(255,255,255,0.1); border-radius: 10px; position: relative; cursor: pointer;">
+                                    <div style="width: 16px; height: 16px; background: var(--text-muted); border-radius: 50%; position: absolute; top: 2px; left: 2px;"></div>
+                                </div>
+                            </div>
+                            <div class="form-group" style="display: flex; align-items: center; justify-content: space-between; padding: 15px 0; border-top: 1px solid rgba(255,255,255,0.05);">
+                                <div>
+                                    <div style="font-weight: 600; color: white;">Require 2FA for Admins</div>
+                                    <div style="font-size: 13px; color: var(--text-muted);">Enforce two-factor authentication for all staff accounts.</div>
+                                </div>
+                                <div style="width: 40px; height: 20px; background: var(--accent-color); border-radius: 10px; position: relative; cursor: pointer;">
+                                    <div style="width: 16px; height: 16px; background: var(--primary-color); border-radius: 50%; position: absolute; top: 2px; right: 2px;"></div>
+                                </div>
+                            </div>
+                            <button type="button" class="cta-btn" style="margin-top: 20px;">Save Changes</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        document.querySelectorAll('.sidebar-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (this.getAttribute('href') === '#' || this.hasAttribute('data-target')) {
+                    e.preventDefault();
+                }
+                
+                // Toggle active class on links
+                document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Toggle active class on content sections
+                const targetId = this.getAttribute('data-target');
+                if (targetId) {
+                    document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
+                    const targetEl = document.getElementById(targetId);
+                    if (targetEl) targetEl.classList.add('active');
+                }
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const userEmail = localStorage.getItem('userEmail');
+            if (userEmail) {
+                const emailEl = document.getElementById('dynamic-user-email');
+                if (emailEl) emailEl.textContent = userEmail;
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileToggle = document.querySelector('.mobile-sidebar-toggle');
+            const sidebar = document.querySelector('.dashboard-sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+
+            if (mobileToggle && sidebar && overlay) {
+                const hamburgerIcon = document.getElementById('hamburger-icon');
+                const closeIcon = document.getElementById('close-icon');
+                const sidebarCloseBtn = document.querySelector('.sidebar-close-btn');
+
+                const toggleMenu = () => {
+                    const isOpen = sidebar.classList.toggle('open');
+                    overlay.classList.toggle('active');
+                    if (hamburgerIcon && closeIcon) {
+                        hamburgerIcon.style.display = isOpen ? 'none' : 'block';
+                        closeIcon.style.display = 'none'; 
+                    }
+                };
+
+                mobileToggle.addEventListener('click', toggleMenu);
+                if (sidebarCloseBtn) sidebarCloseBtn.addEventListener('click', toggleMenu);
+
+                overlay.addEventListener('click', () => {
+                    if (sidebar.classList.contains('open')) toggleMenu();
+                });
+                
+                document.querySelectorAll('.sidebar-link').forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (window.innerWidth <= 768 && sidebar.classList.contains('open')) {
+                            toggleMenu();
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+    <script src="dummy-handler.js"></script>
+</body>
+</html>

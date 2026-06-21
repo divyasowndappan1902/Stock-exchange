@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Not Found - Stock Exchange</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .error-container {
+            background: var(--card-bg);
+            padding: 50px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            max-width: 500px;
+            animation: fadeUp 0.5s ease forwards;
+        }
+        .error-code {
+            font-size: 80px;
+            font-weight: 800;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            line-height: 1;
+        }
+        .error-title {
+            font-size: 24px;
+            color: white;
+            margin-bottom: 20px;
+        }
+        .error-msg {
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-code">404</div>
+        <h1 class="error-title">Page Not Found</h1>
+        <p class="error-msg">Oops! The page or feature you are looking for is currently under construction or does not exist.</p>
+        <button onclick="window.history.back()" class="cta-btn" style="width: 100%; justify-content: center; border: none; cursor: pointer;">Go Back</button>
+    </div>
+</body>
+</html>

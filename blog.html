@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stackly - Trading Blog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <header>
+        <div class="logo-container">
+            <img src="assets/images/logo.webp" alt="Stackly Logo" style="height: 55px;">
+        </div>
+        <div class="mobile-menu-toggle"><i class="fas fa-bars"></i></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html" class="login-btn">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Section 1: Page Header -->
+    <section class="page-header">
+        <h1>Trading Insights</h1>
+        <p>Market news, expert analysis, and educational resources to help you trade smarter.</p>
+    </section>
+
+    <!-- Section 2: Featured Article -->
+    <section class="section-light">
+        <div class="container">
+            <h2 class="section-title" style="text-align: left;">Featured Article</h2>
+            <div class="grid-2" style="background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.05);">
+                <div style="height: 100%; min-height: 400px; background: url('assets/images/featured_blog.webp') center/cover;"></div>
+                <div style="padding: 50px;">
+                    <span style="color: var(--secondary-color); font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Market Analysis</span>
+                    <h3 style="font-size: 32px; color: var(--primary-color); margin: 15px 0;">Understanding the Macro Environment in 2026</h3>
+                    <p class="text-muted" style="margin-bottom: 25px; line-height: 1.6;">Explore how global monetary policy shifts and geopolitical events are shaping the currency and equity markets this quarter. Our chief economist breaks down the key indicators to watch.</p>
+                    <a href="#" class="cta-btn btn-secondary">Read Full Article</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Categories -->
+    <section class="section-dark">
+        <div class="container">
+            <div class="grid-4 text-center">
+                <a href="#" style="text-decoration: none; display: block;" class="card">
+                    <h3 style="margin: 0; font-size: 20px;">Forex Strategies</h3>
+                </a>
+                <a href="#" style="text-decoration: none; display: block;" class="card">
+                    <h3 style="margin: 0; font-size: 20px;">Crypto Markets</h3>
+                </a>
+                <a href="#" style="text-decoration: none; display: block;" class="card">
+                    <h3 style="margin: 0; font-size: 20px;">Stock Earnings</h3>
+                </a>
+                <a href="#" style="text-decoration: none; display: block;" class="card">
+                    <h3 style="margin: 0; font-size: 20px;">Platform Tutorials</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Recent Posts Grid -->
+    <section class="section-light">
+        <div class="container">
+            <h2 class="section-title">Recent Posts</h2>
+            <div class="grid-3">
+                <div class="card" style="padding: 0; overflow: hidden;">
+                    <div style="height: 200px; background: url('assets/images/blog_indicator.webp') center/cover;"></div>
+                    <div style="padding: 25px;">
+                        <span style="color: var(--secondary-color); font-size: 12px; font-weight: 700;">Jun 15, 2026</span>
+                        <h3 style="margin: 10px 0; font-size: 20px;">5 Technical Indicators Every Trader Needs</h3>
+                        <p style="font-size: 14px; margin-bottom: 15px;">Mastering MACD, RSI, and Moving Averages for better entries.</p>
+                        <a href="#" style="color: var(--primary-color); font-weight: 700; text-decoration: none;">Read More &rarr;</a>
+                    </div>
+                </div>
+                <div class="card" style="padding: 0; overflow: hidden;">
+                    <div style="height: 200px; background: url('assets/images/blog_risk.webp') center/cover;"></div>
+                    <div style="padding: 25px;">
+                        <span style="color: var(--secondary-color); font-size: 12px; font-weight: 700;">Jun 12, 2026</span>
+                        <h3 style="margin: 10px 0; font-size: 20px;">How to Manage Risk During High Volatility</h3>
+                        <p style="font-size: 14px; margin-bottom: 15px;">Protecting your capital when the markets make sudden, violent moves.</p>
+                        <a href="#" style="color: var(--primary-color); font-weight: 700; text-decoration: none;">Read More &rarr;</a>
+                    </div>
+                </div>
+                <div class="card" style="padding: 0; overflow: hidden;">
+                    <div style="height: 200px; background: url('assets/images/blog_platform.webp') center/cover;"></div>
+                    <div style="padding: 25px;">
+                        <span style="color: var(--secondary-color); font-size: 12px; font-weight: 700;">Jun 08, 2026</span>
+                        <h3 style="margin: 10px 0; font-size: 20px;">Platform Update: New Options Chains UI</h3>
+                        <p style="font-size: 14px; margin-bottom: 15px;">Discover the new features added to the Stackly Pro Desktop app.</p>
+                        <a href="#" style="color: var(--primary-color); font-weight: 700; text-decoration: none;">Read More &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Newsletter Subscribe -->
+    <section class="section-dark text-center" style="background: linear-gradient(135deg, var(--secondary-color), var(--primary-light));">
+        <div class="container" style="max-width: 600px;">
+            <h2 class="section-title" style="color: white;">Subscribe to our Newsletter</h2>
+            <p class="section-subtitle" style="color: rgba(255,255,255,0.8); margin-bottom: 30px;">Get weekly market briefings and trade setups delivered straight to your inbox. No spam, ever.</p>
+            <form style="display: flex; gap: 10px;">
+                <input type="email" placeholder="Enter your email address" class="form-control" style="background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.3); color: white;">
+                <button type="submit" class="cta-btn" style="border: none; cursor: pointer; white-space: nowrap;">Subscribe Now</button>
+            </form>
+        </div>
+    </section>
+
+        <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo-container" style="margin-bottom: 20px;">
+                        <img src="assets/images/logo.webp" alt="Stackly Logo" style="height: 55px;">
+                    </div>
+                    <p>An award-winning CEO agency with disciplines in digital marketing and website development. We provide the best tools for successful trading.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="service.html">Our Services</a></li>
+                        <li><a href="blog.html">Latest News</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Risk Warning</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul class="footer-links">
+                        <li><span style="color: var(--text-muted)"><i class="fas fa-envelope" style="margin-right: 8px;"></i>Email:</span><br><a href="mailto:support@Stackly.com">support@Stackly.com</a></li>
+                        <li><span style="color: var(--text-muted)"><i class="fas fa-phone" style="margin-right: 8px;"></i>Phone:</span><br><a href="tel:+919871567890">+91 (987) 1567-890</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 Stackly Trading Inc. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="dummy-handler.js"></script>
+</body>
+</html>

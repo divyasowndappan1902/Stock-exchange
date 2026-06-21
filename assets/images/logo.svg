@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="100%" height="100%">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@800&amp;display=swap');
+      .logo-text { font-family: 'Outfit', sans-serif; font-size: 58px; font-weight: 800; fill: #2e5a7e; letter-spacing: 1px; }
+    </style>
+  </defs>
+
+  <g transform="translate(10, 5)">
+    <!-- Mint Green Top-Left Swoop -->
+    <path d="M 5 45 C 10 15, 25 0, 45 0 C 35 15, 25 25, 35 35 C 45 45, 50 40, 55 40 C 35 65, 15 55, 5 45 Z" fill="#8cdcb6"/>
+    
+    <!-- Slate Blue Bottom-Right Swoop -->
+    <path d="M 5 45 C 10 15, 25 0, 45 0 C 35 15, 25 25, 35 35 C 45 45, 50 40, 55 40 C 35 65, 15 55, 5 45 Z" fill="#2e5a7e" transform="rotate(180 35 45)"/>
+  </g>
+
+  <!-- Text STACKLY -->
+  <text x="90" y="62" class="logo-text">STACKLY</text>
+</svg>
