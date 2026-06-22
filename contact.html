@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,7 +18,7 @@
     <!-- Header / Navigation -->
     <header>
         <div class="logo-container">
-            <img src="assets/images/logo.webp" alt="Stackly Logo" style="height: 40px;">
+            <img src="assets/images/logo.webp" alt="Stackly Logo" onclick="window.location.reload();" style="cursor: pointer; height: 40px;">
         </div>
         <div class="mobile-menu-toggle"><i class="fas fa-bars"></i></div>
         <nav>
@@ -152,13 +152,140 @@
         </div>
     </section>
 
+    <!-- Section 6: Support Channels -->
+    <section class="section-dark" data-aos="fade-up">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Choose Your Support Channel</h2>
+            <p class="text-center text-muted" style="max-width: 600px; margin: 0 auto 50px;" data-aos="fade-up">We're available across multiple platforms to ensure you get help wherever you are, whenever you need it.</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px;">
+
+                <!-- Live Chat -->
+                <div data-aos="fade-up" data-aos-delay="0" style="background: linear-gradient(135deg, rgba(140,216,188,0.12), rgba(140,216,188,0.04)); border: 1px solid rgba(140,216,188,0.25); border-radius: 20px; padding: 36px 28px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; cursor: pointer;" onmouseover="this.style.transform='translateY(-8px)';this.style.boxShadow='0 20px 40px rgba(140,216,188,0.2)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
+                    <div style="width: 64px; height: 64px; border-radius: 50%; background: rgba(140,216,188,0.2); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                        <i class="fas fa-comments" style="font-size: 28px; color: var(--accent-color);"></i>
+                    </div>
+                    <h3 style="font-size: 18px; color: #fff; margin-bottom: 10px;">Live Chat</h3>
+                    <p class="text-muted" style="font-size: 14px; margin-bottom: 18px;">Instant answers from our support team in real-time.</p>
+                    <span style="display: inline-block; background: rgba(140,216,188,0.2); color: var(--accent-color); font-size: 12px; font-weight: 700; padding: 4px 14px; border-radius: 20px;">● Online Now</span>
+                </div>
+
+                <!-- Email -->
+                <div data-aos="fade-up" data-aos-delay="100" style="background: linear-gradient(135deg, rgba(100,160,255,0.12), rgba(100,160,255,0.04)); border: 1px solid rgba(100,160,255,0.25); border-radius: 20px; padding: 36px 28px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; cursor: pointer;" onmouseover="this.style.transform='translateY(-8px)';this.style.boxShadow='0 20px 40px rgba(100,160,255,0.2)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
+                    <div style="width: 64px; height: 64px; border-radius: 50%; background: rgba(100,160,255,0.2); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                        <i class="fas fa-envelope-open-text" style="font-size: 28px; color: #64a0ff;"></i>
+                    </div>
+                    <h3 style="font-size: 18px; color: #fff; margin-bottom: 10px;">Email Support</h3>
+                    <p class="text-muted" style="font-size: 14px; margin-bottom: 18px;">Send a detailed query and get a thorough response.</p>
+                    <span style="display: inline-block; background: rgba(100,160,255,0.15); color: #64a0ff; font-size: 12px; font-weight: 700; padding: 4px 14px; border-radius: 20px;">~2 hr response</span>
+                </div>
+
+                <!-- Phone -->
+                <div data-aos="fade-up" data-aos-delay="200" style="background: linear-gradient(135deg, rgba(255,180,100,0.12), rgba(255,180,100,0.04)); border: 1px solid rgba(255,180,100,0.25); border-radius: 20px; padding: 36px 28px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; cursor: pointer;" onmouseover="this.style.transform='translateY(-8px)';this.style.boxShadow='0 20px 40px rgba(255,180,100,0.2)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
+                    <div style="width: 64px; height: 64px; border-radius: 50%; background: rgba(255,180,100,0.2); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                        <i class="fas fa-phone-alt" style="font-size: 28px; color: #ffb464;"></i>
+                    </div>
+                    <h3 style="font-size: 18px; color: #fff; margin-bottom: 10px;">Phone Call</h3>
+                    <p class="text-muted" style="font-size: 14px; margin-bottom: 18px;">Speak directly with a senior account specialist.</p>
+                    <span style="display: inline-block; background: rgba(255,180,100,0.15); color: #ffb464; font-size: 12px; font-weight: 700; padding: 4px 14px; border-radius: 20px;">24 / 7 Available</span>
+                </div>
+
+                <!-- WhatsApp -->
+                <div data-aos="fade-up" data-aos-delay="300" style="background: linear-gradient(135deg, rgba(37,211,102,0.12), rgba(37,211,102,0.04)); border: 1px solid rgba(37,211,102,0.25); border-radius: 20px; padding: 36px 28px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; cursor: pointer;" onmouseover="this.style.transform='translateY(-8px)';this.style.boxShadow='0 20px 40px rgba(37,211,102,0.2)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
+                    <div style="width: 64px; height: 64px; border-radius: 50%; background: rgba(37,211,102,0.2); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                        <i class="fab fa-whatsapp" style="font-size: 30px; color: #25d366;"></i>
+                    </div>
+                    <h3 style="font-size: 18px; color: #fff; margin-bottom: 10px;">WhatsApp</h3>
+                    <p class="text-muted" style="font-size: 14px; margin-bottom: 18px;">Quick message support right from your phone.</p>
+                    <span style="display: inline-block; background: rgba(37,211,102,0.15); color: #25d366; font-size: 12px; font-weight: 700; padding: 4px 14px; border-radius: 20px;">Avg. 15 min reply</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: Response Time Stats -->
+    <section class="section-light" data-aos="fade-up">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Our Support by the Numbers</h2>
+            <p class="text-center text-muted" style="max-width: 560px; margin: 0 auto 50px;" data-aos="fade-up">We set the bar high — and consistently exceed it. Here's our track record.</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 30px; text-align: center;">
+                <div data-aos="zoom-in" data-aos-delay="0" style="padding: 30px 20px; border-radius: 16px; border: 1px solid #eee; background: #fff; box-shadow: 0 8px 24px rgba(0,0,0,0.05);">
+                    <div style="font-size: 48px; font-weight: 800; color: var(--primary-color); line-height: 1;">98<span style="font-size: 28px;">%</span></div>
+                    <p style="font-size: 14px; color: var(--text-muted); margin-top: 10px; font-weight: 500;">Customer Satisfaction Rate</p>
+                </div>
+                <div data-aos="zoom-in" data-aos-delay="100" style="padding: 30px 20px; border-radius: 16px; border: 1px solid #eee; background: #fff; box-shadow: 0 8px 24px rgba(0,0,0,0.05);">
+                    <div style="font-size: 48px; font-weight: 800; color: var(--primary-color); line-height: 1;">&lt;2<span style="font-size: 28px;">hr</span></div>
+                    <p style="font-size: 14px; color: var(--text-muted); margin-top: 10px; font-weight: 500;">Average Email Response</p>
+                </div>
+                <div data-aos="zoom-in" data-aos-delay="200" style="padding: 30px 20px; border-radius: 16px; border: 1px solid #eee; background: #fff; box-shadow: 0 8px 24px rgba(0,0,0,0.05);">
+                    <div style="font-size: 48px; font-weight: 800; color: var(--primary-color); line-height: 1;">24<span style="font-size: 28px;">/7</span></div>
+                    <p style="font-size: 14px; color: var(--text-muted); margin-top: 10px; font-weight: 500;">Round-the-Clock Support</p>
+                </div>
+                <div data-aos="zoom-in" data-aos-delay="300" style="padding: 30px 20px; border-radius: 16px; border: 1px solid #eee; background: #fff; box-shadow: 0 8px 24px rgba(0,0,0,0.05);">
+                    <div style="font-size: 48px; font-weight: 800; color: var(--primary-color); line-height: 1;">50<span style="font-size: 28px;">K+</span></div>
+                    <p style="font-size: 14px; color: var(--text-muted); margin-top: 10px; font-weight: 500;">Tickets Resolved Monthly</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 8: Connect on Social Media -->
+    <section class="section-dark" data-aos="fade-up">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Follow &amp; Connect With Us</h2>
+            <p class="text-center text-muted" style="max-width: 560px; margin: 0 auto 50px;" data-aos="fade-up">Stay updated with market insights, platform news, and live trading tips across all our social channels.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+                <!-- Twitter/X -->
+                <a href="#" style="text-decoration: none; flex: 1; min-width: 200px; max-width: 260px;" data-aos="fade-up" data-aos-delay="0">
+                    <div style="background: linear-gradient(135deg, #1da1f2, #0d7ac4); border-radius: 18px; padding: 28px 24px; display: flex; align-items: center; gap: 16px; transition: transform 0.3s, box-shadow 0.3s;" onmouseover="this.style.transform='scale(1.04)';this.style.boxShadow='0 16px 40px rgba(29,161,242,0.4)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none'">
+                        <i class="fab fa-twitter" style="font-size: 32px; color: #fff;"></i>
+                        <div>
+                            <div style="color: #fff; font-weight: 700; font-size: 16px;">Twitter / X</div>
+                            <div style="color: rgba(255,255,255,0.75); font-size: 13px;">@StacklyHQ</div>
+                        </div>
+                    </div>
+                </a>
+                <!-- LinkedIn -->
+                <a href="#" style="text-decoration: none; flex: 1; min-width: 200px; max-width: 260px;" data-aos="fade-up" data-aos-delay="100">
+                    <div style="background: linear-gradient(135deg, #0077b5, #004f78); border-radius: 18px; padding: 28px 24px; display: flex; align-items: center; gap: 16px; transition: transform 0.3s, box-shadow 0.3s;" onmouseover="this.style.transform='scale(1.04)';this.style.boxShadow='0 16px 40px rgba(0,119,181,0.4)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none'">
+                        <i class="fab fa-linkedin-in" style="font-size: 32px; color: #fff;"></i>
+                        <div>
+                            <div style="color: #fff; font-weight: 700; font-size: 16px;">LinkedIn</div>
+                            <div style="color: rgba(255,255,255,0.75); font-size: 13px;">Stackly Trading Inc.</div>
+                        </div>
+                    </div>
+                </a>
+                <!-- Instagram -->
+                <a href="#" style="text-decoration: none; flex: 1; min-width: 200px; max-width: 260px;" data-aos="fade-up" data-aos-delay="200">
+                    <div style="background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af); border-radius: 18px; padding: 28px 24px; display: flex; align-items: center; gap: 16px; transition: transform 0.3s, box-shadow 0.3s;" onmouseover="this.style.transform='scale(1.04)';this.style.boxShadow='0 16px 40px rgba(221,42,123,0.4)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none'">
+                        <i class="fab fa-instagram" style="font-size: 32px; color: #fff;"></i>
+                        <div>
+                            <div style="color: #fff; font-weight: 700; font-size: 16px;">Instagram</div>
+                            <div style="color: rgba(255,255,255,0.75); font-size: 13px;">@stackly.official</div>
+                        </div>
+                    </div>
+                </a>
+                <!-- YouTube -->
+                <a href="#" style="text-decoration: none; flex: 1; min-width: 200px; max-width: 260px;" data-aos="fade-up" data-aos-delay="300">
+                    <div style="background: linear-gradient(135deg, #ff0000, #b80000); border-radius: 18px; padding: 28px 24px; display: flex; align-items: center; gap: 16px; transition: transform 0.3s, box-shadow 0.3s;" onmouseover="this.style.transform='scale(1.04)';this.style.boxShadow='0 16px 40px rgba(255,0,0,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none'">
+                        <i class="fab fa-youtube" style="font-size: 32px; color: #fff;"></i>
+                        <div>
+                            <div style="color: #fff; font-weight: 700; font-size: 16px;">YouTube</div>
+                            <div style="color: rgba(255,255,255,0.75); font-size: 13px;">Stackly TV</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
         <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col" data-aos="fade-up">
                     <div class="logo-container" style="margin-bottom: 20px;">
-                        <img src="assets/images/logo.webp" alt="Stackly Logo" style="height: 40px;">
+                        <img src="assets/images/logo.webp" alt="Stackly Logo" onclick="window.location.reload();" style="cursor: pointer; height: 40px;">
                     </div>
                     <p>An award-winning CEO agency with disciplines in digital marketing and website development. We provide the best tools for successful trading.</p>
                     <div class="social-icons">

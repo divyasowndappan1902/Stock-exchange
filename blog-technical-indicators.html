@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Master MACD, RSI, Moving Averages, Bollinger Bands, and Stochastics to identify key trade entry and exit setups.">
+    <title>5 Technical Indicators Every Trader Needs - Stackly Blog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* Custom styles for interactive indicator simulator */
+        .chart-simulator-container {
+            background: #12181f;
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px 0;
+            color: white;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .chart-canvas-area {
+            background: #0d1218;
+            border-radius: 10px;
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .chart-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .candlestick {
+            position: absolute;
+            width: 10px;
+            border-radius: 2px;
+        }
+        .candlestick .wick {
+            position: absolute;
+            width: 2px;
+            background: inherit;
+            left: 4px;
+        }
+        .candlestick.bullish {
+            background: #4ade80;
+        }
+        .candlestick.bearish {
+            background: #f87171;
+        }
+        .overlay-line {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+        .indicator-panel {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .indicator-signal-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .signal-buy { background: rgba(74, 222, 128, 0.15); color: #4ade80; border: 1px solid rgba(74, 222, 128, 0.3); }
+        .signal-sell { background: rgba(248, 113, 113, 0.15); color: #f87171; border: 1px solid rgba(248, 113, 113, 0.3); }
+        .signal-neutral { background: rgba(160, 160, 160, 0.15); color: var(--text-muted); border: 1px solid rgba(160, 160, 160, 0.3); }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <img src="assets/images/logo.webp" alt="Loading Stackly..." class="preloader-logo">
+    </div>
+
+    <!-- Reading Progress Bar -->
+    <div id="reading-progress-container">
+        <div id="reading-progress-bar"></div>
+    </div>
+
+    <!-- Header / Navigation -->
+    <header>
+        <div class="logo-container">
+            <img src="assets/images/logo.webp" alt="Stackly Logo" onclick="window.location.href='index.html';" style="cursor: pointer; height: 40px;">
+        </div>
+        <div class="mobile-menu-toggle"><i class="fas fa-bars"></i></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html" class="login-btn">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Blog Detail Hero -->
+    <section class="blog-detail-hero" data-aos="fade-up">
+        <div class="container">
+            <div class="meta-info">
+                <span><i class="far fa-calendar"></i> June 15, 2026</span>
+                <span>•</span>
+                <span><i class="far fa-folder"></i> Forex Strategies</span>
+                <span>•</span>
+                <span><i class="far fa-clock"></i> 5 Min Read</span>
+            </div>
+            <h1>5 Technical Indicators Every Trader Needs: MACD, RSI, and Beyond</h1>
+            <div class="author-strip">
+                <img src="assets/images/person_david.webp" alt="David Hayes">
+                <div class="author-details">
+                    <h4>David Hayes</h4>
+                    <p>Senior Market Strategist, Stackly</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Content Layout -->
+    <section class="section-light" style="padding-top: 50px;">
+        <div class="container">
+            <div class="blog-detail-layout">
+                
+                <!-- Main Content (Left Column) -->
+                <div class="blog-article">
+                    <img src="assets/images/blog_indicator.webp" alt="Technical Indicators on Charts" style="width: 100%; border-radius: 16px; margin-bottom: 30px;" data-aos="fade-up">
+                    
+                    <div id="section-intro">
+                        <p>Navigating the financial markets without technical indicators is like sailing in open water without a compass. While price action remains the ultimate source of truth, indicators compress complex volume, momentum, and trend data into actionable visual representations.</p>
+                        <p>In this guide, we break down five essential technical indicators that every trader—regardless of assets traded—should incorporate into their analysis to build a robust statistical edge.</p>
+                    </div>
+
+                    <blockquote data-aos="fade-up">
+                        "Technical indicators do not predict the future. Instead, they help us classify current market conditions and assess the probability of upcoming trends."
+                        <cite>— David Hayes, Senior Market Strategist</cite>
+                    </blockquote>
+
+                    <div id="section-macd">
+                        <h2>1. MACD (Moving Average Convergence Divergence)</h2>
+                        <p>Developed by Gerald Appel, the MACD is a trend-following momentum indicator. It displays the relationship between two moving averages of a security’s price—typically the 12-period and 26-period Exponential Moving Averages (EMAs).</p>
+                        <p>Traders watch for two main signals: <strong>Signal Line Crossovers</strong> (when the MACD line crosses above or below the 9-period EMA signal line) and <strong>Zero-Line Crossovers</strong>. Centerline crossovers indicate shifts in momentum, while divergences between MACD and price can warn of potential reversals.</p>
+                    </div>
+
+                    <div id="section-rsi">
+                        <h2>2. RSI (Relative Strength Index)</h2>
+                        <p>The RSI, created by J. Welles Wilder, is a momentum oscillator that measures the speed and change of price movements. Its scale ranges from 0 to 100.</p>
+                        <p>Traditionally, an RSI value above 70 indicates an overbought condition, implying the asset may be due for a correction. Conversely, an RSI below 30 signals an oversold condition. Strong trends, however, can keep RSI overbought or oversold for extended periods, making it useful to look for RSI failures and centerline crosses to confirm momentum shifts.</p>
+                    </div>
+
+                    <div id="section-ma">
+                        <h2>3. Moving Averages (SMA & EMA)</h2>
+                        <p>Moving averages smooth out price fluctuations to show the underlying trend. The <strong>Simple Moving Average (SMA)</strong> calculates the average price over a set period, while the <strong>Exponential Moving Average (EMA)</strong> gives greater weight to recent data, making it more responsive to new information.</p>
+                        <p>Popular periods include the 50-day moving average (intermediate trend support) and the 200-day moving average (long-term market health benchmark). Crossovers, such as the "Golden Cross" (50 SMA crossing above 200 SMA), are widely monitored macro indicators.</p>
+                    </div>
+
+                    <!-- Interactive Indicator Simulator Widget -->
+                    <div id="section-simulator" class="chart-simulator-container" data-aos="fade-up">
+                        <h3 style="margin-top: 0; color: var(--accent-color); font-size: 24px;"><i class="fas fa-chart-line" style="margin-right: 10px;"></i>Interactive Indicator Chart Simulator</h3>
+                        <p style="font-size: 15px; margin-bottom: 20px; color: var(--text-muted);">Select an indicator below to overlay it on our live-simulated price chart and see what type of trading signal is currently triggered.</p>
+                        
+                        <div class="tech-buttons">
+                            <button class="tech-btn active" onclick="selectIndicator('macd', this)">MACD Crossover</button>
+                            <button class="tech-btn" onclick="selectIndicator('rsi', this)">RSI Oscillator</button>
+                            <button class="tech-btn" onclick="selectIndicator('ma', this)">SMA 50/200</button>
+                            <button class="tech-btn" onclick="selectIndicator('bb', this)">Bollinger Bands</button>
+                        </div>
+
+                        <div class="chart-canvas-area">
+                            <div class="chart-grid"></div>
+                            <!-- Styled SVG for line overlay -->
+                            <svg class="overlay-line" id="chart-svg-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                <path id="chart-path" d="" fill="none" stroke="none" stroke-width="2"/>
+                                <path id="indicator-path" d="" fill="none" stroke="none" stroke-width="2"/>
+                                <path id="indicator-path-secondary" d="" fill="none" stroke="none" stroke-width="1.5"/>
+                            </svg>
+                            <!-- Candlesticks generated dynamically -->
+                            <div id="candlestick-holder"></div>
+                        </div>
+
+                        <div class="indicator-panel">
+                            <span id="signal-badge" class="indicator-signal-badge signal-buy">Buy Signal</span>
+                            <h4 id="indicator-title" style="margin: 0 0 8px 0; color: white;">MACD (12, 26, 9)</h4>
+                            <p id="indicator-explanation" style="font-size: 14px; margin: 0; color: var(--text-muted); line-height: 1.5;"></p>
+                        </div>
+                    </div>
+
+                    <div id="section-bands">
+                        <h2>4. Bollinger Bands</h2>
+                        <p>Bollinger Bands, formulated by John Bollinger, consist of a center band (usually a 20-period SMA) and two outer bands set at two standard deviations above and below the center line. They expand and contract based on market volatility.</p>
+                        <p>When the bands contract (known as a "squeeze"), it signals low volatility, which is often followed by explosive breakouts. When the price consistently tags the upper band, the market is considered overextended; tagging the lower band implies undervaluation.</p>
+                    </div>
+
+                    <div id="section-stoch">
+                        <h2>5. Stochastic Oscillator</h2>
+                        <p>The Stochastic Oscillator compares a security's closing price to its price range over a specific time period. It consists of two lines, %K and %D, and oscillates between 0 and 100.</p>
+                        <p>Similar to RSI, readings above 80 indicate overbought conditions, while readings below 20 indicate oversold. Traders often look for crossovers of the %K line above the %D line in oversold regions as a confirmation signal for buying.</p>
+                    </div>
+
+                    <div id="section-conclusion">
+                        <h2>Summary Rules for Strategy Integration</h2>
+                        <ul>
+                            <li><strong>Avoid Redundancy:</strong> Don't combine multiple indicators of the same type (e.g., using both RSI and Stochastics, which are both momentum oscillators). Instead, pair a momentum oscillator with a trend filter (like EMA).</li>
+                            <li><strong>Context is King:</strong> Indicators perform differently based on market regime. Oscillators excel in range-bound markets, while moving averages are most effective in strong trends.</li>
+                            <li><strong>Confirm with Price Action:</strong> Never trade an indicator signal blindly. Ensure that key support or resistance levels match the indicator's directional bias.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Sidebar (Right Column) -->
+                <div class="blog-sidebar">
+                    <!-- Widget 1: Author Card -->
+                    <div class="sidebar-widget author-info-card">
+                        <img src="assets/images/person_david.webp" alt="David Hayes">
+                        <h5>David Hayes</h5>
+                        <span>Senior Market Strategist</span>
+                        <p>David is a chartered market technician (CMT) with 12 years of experience hosting technical analysis webinars and trading commodity derivatives.</p>
+                    </div>
+
+                    <!-- Widget 2: Table of Contents -->
+                    <div class="sidebar-widget">
+                        <h4>Table of Contents</h4>
+                        <ul class="toc-list">
+                            <li><a href="#section-intro" class="active">Introduction</a></li>
+                            <li><a href="#section-macd">1. MACD Indicator</a></li>
+                            <li><a href="#section-rsi">2. RSI Oscillator</a></li>
+                            <li><a href="#section-ma">3. Moving Averages</a></li>
+                            <li><a href="#section-simulator">4. Chart Simulator</a></li>
+                            <li><a href="#section-bands">5. Bollinger Bands</a></li>
+                            <li><a href="#section-stoch">6. Stochastic Oscillator</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Widget 3: Share Post -->
+                    <div class="sidebar-widget">
+                        <h4>Share This Article</h4>
+                        <div class="share-links">
+                            <a href="#" class="share-btn fb"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="share-btn tw"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="share-btn in"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="share-btn wa"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Related Posts -->
+    <section class="section-light" style="border-top: 1px solid rgba(0, 0, 0, 0.05); padding: 80px 5%;">
+        <div class="container">
+            <h3 style="font-size: 28px; margin-bottom: 40px; color: var(--primary-color);">Related Articles</h3>
+            <div class="grid-3">
+                <!-- Related 1 -->
+                <div class="card" style="padding: 0; overflow: hidden; background: white; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 10px 30px rgba(0,0,0,0.03); border-radius: 16px;">
+                    <div style="height: 180px; background: url('assets/images/featured_blog.webp') center/cover;"></div>
+                    <div style="padding: 20px; color: var(--text-dark);">
+                        <span style="color: var(--secondary-color); font-size: 11px; font-weight: 700;">Jun 18, 2026</span>
+                        <h4 style="margin: 8px 0 12px; font-size: 16px; font-weight: 700; color: var(--primary-color);">Understanding the Macro Environment in 2026</h4>
+                        <a href="blog-macro-environment.html" style="color: var(--secondary-color); font-weight: 700; font-size: 13px; text-decoration: none;">Read Article &rarr;</a>
+                    </div>
+                </div>
+                <!-- Related 2 -->
+                <div class="card" style="padding: 0; overflow: hidden; background: white; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 10px 30px rgba(0,0,0,0.03); border-radius: 16px;">
+                    <div style="height: 180px; background: url('assets/images/blog_risk.webp') center/cover;"></div>
+                    <div style="padding: 20px; color: var(--text-dark);">
+                        <span style="color: var(--secondary-color); font-size: 11px; font-weight: 700;">Jun 12, 2026</span>
+                        <h4 style="margin: 8px 0 12px; font-size: 16px; font-weight: 700; color: var(--primary-color);">How to Manage Risk During High Volatility</h4>
+                        <a href="blog-risk-management.html" style="color: var(--secondary-color); font-weight: 700; font-size: 13px; text-decoration: none;">Read Article &rarr;</a>
+                    </div>
+                </div>
+                <!-- Related 3 -->
+                <div class="card" style="padding: 0; overflow: hidden; background: white; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 10px 30px rgba(0,0,0,0.03); border-radius: 16px;">
+                    <div style="height: 180px; background: url('assets/images/blog_psychology.png') center/cover;"></div>
+                    <div style="padding: 20px; color: var(--text-dark);">
+                        <span style="color: var(--secondary-color); font-size: 11px; font-weight: 700;">Jun 05, 2026</span>
+                        <h4 style="margin: 8px 0 12px; font-size: 16px; font-weight: 700; color: var(--primary-color);">The Psychology of a Winning Trader</h4>
+                        <a href="blog-winning-psychology.html" style="color: var(--secondary-color); font-weight: 700; font-size: 13px; text-decoration: none;">Read Article &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo-container" style="margin-bottom: 20px;">
+                        <img src="assets/images/logo.webp" alt="Stackly Logo" onclick="window.location.href='index.html';" style="cursor: pointer; height: 40px;">
+                    </div>
+                    <p>An award-winning CEO agency with disciplines in digital marketing and website development. We provide the best tools for successful trading.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="service.html">Our Services</a></li>
+                        <li><a href="blog.html">Latest News</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="404.html">Terms of Service</a></li>
+                        <li><a href="404.html">Privacy Policy</a></li>
+                        <li><a href="404.html">Risk Warning</a></li>
+                        <li><a href="404.html">Cookie Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul class="footer-links">
+                        <li><span style="color: var(--text-muted)"><i class="fas fa-envelope" style="margin-right: 8px;"></i>Email:</span><br><a href="mailto:support@Stackly.com">support@Stackly.com</a></li>
+                        <li><span style="color: var(--text-muted)"><i class="fas fa-phone" style="margin-right: 8px;"></i>Phone:</span><br><a href="tel:+919871567890">+91 (987) 1567-890</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 Stackly Trading Inc. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="dummy-handler.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        window.addEventListener('load', function() {
+            document.body.classList.add('loaded');
+        });
+
+        // Interactive Chart Simulator Data & Logic
+        const simulatedPrices = [120, 122, 121, 123, 126, 125, 124, 127, 129, 128, 131, 133, 132, 135, 134, 137, 140, 139, 138, 141, 143, 142, 141, 139, 138, 136, 137, 135, 133, 134];
+        
+        function selectIndicator(type, btn) {
+            const buttons = btn.parentElement.querySelectorAll('.tech-btn');
+            buttons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const signalBadge = document.getElementById('signal-badge');
+            const title = document.getElementById('indicator-title');
+            const desc = document.getElementById('indicator-explanation');
+
+            const path = document.getElementById('chart-path');
+            const pathSec = document.getElementById('indicator-path');
+            const pathSec2 = document.getElementById('indicator-path-secondary');
+            
+            // Reset paths
+            path.setAttribute('stroke', 'none');
+            pathSec.setAttribute('stroke', 'none');
+            pathSec2.setAttribute('stroke', 'none');
+
+            if (type === 'macd') {
+                title.innerText = "MACD (Moving Average Convergence Divergence)";
+                desc.innerText = "The MACD line has crossed above the Signal line below the zero line, indicating strong bullish momentum. In dynamic backtesting, this crossover marks high-probability trend entries.";
+                signalBadge.innerText = "Buy Signal";
+                signalBadge.className = "indicator-signal-badge signal-buy";
+                
+                // Draw MACD Line & Signal Line
+                path.setAttribute('stroke', '#4ade80');
+                path.setAttribute('d', "M 0 60 Q 25 30 50 80 T 100 20");
+                pathSec.setAttribute('stroke', '#e97979');
+                pathSec.setAttribute('d', "M 0 55 Q 25 35 50 75 T 100 25");
+            } else if (type === 'rsi') {
+                title.innerText = "RSI (Relative Strength Index)";
+                desc.innerText = "The 14-period Relative Strength Index has retraced to 26.8, falling below the critical threshold of 30. The asset is technically oversold, signaling potential buyer interest and trend exhaustion.";
+                signalBadge.innerText = "Oversold (Buy)";
+                signalBadge.className = "indicator-signal-badge signal-buy";
+
+                path.setAttribute('stroke', '#a78bfa');
+                path.setAttribute('d', "M 0 40 L 20 50 L 40 30 L 60 20 L 80 85 L 100 70");
+                pathSec.setAttribute('stroke', 'rgba(255,255,255,0.15)');
+                pathSec.setAttribute('d', "M 0 30 L 100 30"); // 70 line
+                pathSec2.setAttribute('stroke', 'rgba(255,255,255,0.15)');
+                pathSec2.setAttribute('d', "M 0 70 L 100 70"); // 30 line
+            } else if (type === 'ma') {
+                title.innerText = "SMA (Simple Moving Average) 50 & 200";
+                desc.innerText = "The fast 50-period SMA continues to ride above the slow 200-period SMA. Crossovers indicate macro market health: the price is currently holding the 50 SMA as key dynamic support.";
+                signalBadge.innerText = "Bullish Trend";
+                signalBadge.className = "indicator-signal-badge signal-buy";
+
+                // Price line
+                path.setAttribute('stroke', '#8cd8bc');
+                path.setAttribute('d', "M 0 80 L 20 70 L 40 75 L 60 55 L 80 40 L 100 25");
+                // 50 SMA
+                pathSec.setAttribute('stroke', '#38bdf8');
+                pathSec.setAttribute('d', "M 0 85 L 20 80 L 40 78 L 60 65 L 80 50 L 100 35");
+                // 200 SMA
+                pathSec2.setAttribute('stroke', '#e2e8f0');
+                pathSec2.setAttribute('d', "M 0 90 L 20 88 L 40 85 L 60 82 L 80 78 L 100 72");
+            } else if (type === 'bb') {
+                title.innerText = "Bollinger Bands (20, 2)";
+                desc.innerText = "Bands have tightly contracted into a 'Bollinger Squeeze'. This state of historically low volatility precedes massive, double-standard-deviation breakout expansions in trend directions.";
+                signalBadge.innerText = "Volatility Squeeze";
+                signalBadge.className = "indicator-signal-badge signal-neutral";
+
+                path.setAttribute('stroke', '#f43f5e'); // Top Band
+                path.setAttribute('d', "M 0 25 Q 30 20 50 30 T 100 40");
+                pathSec.setAttribute('stroke', '#f43f5e'); // Bottom Band
+                pathSec.setAttribute('d', "M 0 75 Q 30 80 50 70 T 100 80");
+                pathSec2.setAttribute('stroke', '#f43f5e'); // Center Line (dashed)
+                pathSec2.setAttribute('d', "M 0 50 Q 30 50 50 50 T 100 60");
+                pathSec2.setAttribute('stroke-dasharray', '5,5');
+            }
+        }
+
+        // Generate Candlesticks
+        function makeCandles() {
+            const holder = document.getElementById('candlestick-holder');
+            holder.innerHTML = '';
+            const count = 18;
+            const containerWidth = 100; // in percent
+            const spacing = containerWidth / count;
+            
+            let currentClose = 120;
+            for (let i = 0; i < count; i++) {
+                const high = currentClose + Math.random() * 8;
+                const low = currentClose - Math.random() * 8;
+                const open = currentClose + (Math.random() - 0.5) * 6;
+                const close = currentClose + (Math.random() - 0.5) * 6;
+                
+                const isBullish = close >= open;
+                const minVal = 80;
+                const maxVal = 160;
+                const scale = (val) => 100 - ((val - minVal) / (maxVal - minVal)) * 100;
+                
+                const top = scale(Math.max(open, close));
+                const bottom = scale(Math.min(open, close));
+                const height = Math.max(bottom - top, 2);
+                
+                const wickTop = scale(high);
+                const wickBottom = scale(low);
+                const wickHeight = wickBottom - wickTop;
+                
+                const candleEl = document.createElement('div');
+                candleEl.className = `candlestick ${isBullish ? 'bullish' : 'bearish'}`;
+                candleEl.style.left = `${i * spacing + 1}%`;
+                candleEl.style.top = `${top}%`;
+                candleEl.style.height = `${height}%`;
+                
+                const wickEl = document.createElement('div');
+                wickEl.className = 'wick';
+                wickEl.style.top = `${wickTop - top}%`;
+                wickEl.style.height = `${wickHeight}%`;
+                
+                candleEl.appendChild(wickEl);
+                holder.appendChild(candleEl);
+                
+                currentClose = close;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            makeCandles();
+            const activeBtn = document.querySelector('.tech-buttons .tech-btn.active');
+            if (activeBtn) {
+                selectIndicator('macd', activeBtn);
+            }
+        });
+
+        // Reading Progress Bar Script
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('reading-progress-bar').style.width = scrolled + '%';
+        });
+
+        // Highlight TOC Link on Scroll
+        const sections = document.querySelectorAll('.blog-article > div');
+        const tocLinks = document.querySelectorAll('.toc-list a');
+
+        window.addEventListener('scroll', () => {
+            let currentSectionId = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.scrollY >= (sectionTop - 250)) {
+                    currentSectionId = section.getAttribute('id');
+                }
+            });
+            tocLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSectionId}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

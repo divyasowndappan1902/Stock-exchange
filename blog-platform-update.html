@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover Stackly Pro's new options chain dashboard. Learn how to execute calls, puts, and spreads with the updated interface.">
+    <title>Platform Update: New Options Chains UI - Stackly Blog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* Custom styles for interactive options chain */
+        .options-container {
+            background: #12181f;
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px 0;
+            color: white;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .options-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            text-align: center;
+        }
+        .options-table th {
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--text-muted);
+            padding: 10px 5px;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .options-table td {
+            padding: 12px 5px;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .options-table tr:hover td {
+            background: rgba(140, 216, 188, 0.05);
+        }
+        .strike-cell {
+            font-weight: 700;
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--accent-color);
+        }
+        .option-selected-call {
+            background: rgba(74, 222, 128, 0.15) !important;
+            border: 1px solid #4ade80;
+        }
+        .option-selected-put {
+            background: rgba(248, 113, 113, 0.15) !important;
+            border: 1px solid #f87171;
+        }
+        .option-type-tab {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .opt-payoff-box {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .payoff-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            text-align: center;
+        }
+        .payoff-value {
+            font-size: 20px;
+            font-weight: 700;
+            margin-top: 5px;
+        }
+        .text-green { color: #4ade80; }
+        .text-red { color: #f87171; }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <img src="assets/images/logo.webp" alt="Loading Stackly..." class="preloader-logo">
+    </div>
+
+    <!-- Reading Progress Bar -->
+    <div id="reading-progress-container">
+        <div id="reading-progress-bar"></div>
+    </div>
+
+    <!-- Header / Navigation -->
+    <header>
+        <div class="logo-container">
+            <img src="assets/images/logo.webp" alt="Stackly Logo" onclick="window.location.href='index.html';" style="cursor: pointer; height: 40px;">
+        </div>
+        <div class="mobile-menu-toggle"><i class="fas fa-bars"></i></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html" class="login-btn">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Blog Detail Hero -->
+    <section class="blog-detail-hero" data-aos="fade-up">
+        <div class="container">
+            <div class="meta-info">
+                <span><i class="far fa-calendar"></i> June 08, 2026</span>
+                <span>•</span>
+                <span><i class="far fa-folder"></i> Platform Tutorials</span>
+                <span>•</span>
+                <span><i class="far fa-clock"></i> 4 Min Read</span>
+            </div>
+            <h1>Platform Update: Mastering the New Options Chains Interface</h1>
+            <div class="author-strip">
+                <img src="assets/images/person_sarah.webp" alt="Sarah Jenkins">
+                <div class="author-details">
+                    <h4>Sarah Jenkins</h4>
+                    <p>Head of Product, Stackly</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Content Layout -->
+    <section class="section-light" style="padding-top: 50px;">
+        <div class="container">
+            <div class="blog-detail-layout">
+                
+                <!-- Main Content (Left Column) -->
+                <div class="blog-article">
+                    <img src="assets/images/blog_platform.webp" alt="New Options Chain UI Screenshot" style="width: 100%; border-radius: 16px; margin-bottom: 30px;" data-aos="fade-up">
+                    
+                    <div id="section-intro">
+                        <p>We are thrilled to roll out the latest feature update for Stackly Pro: a completely re-engineered options trading dashboard. Based on valuable feedback from our professional and retail trading community, we have replaced our traditional layout with a lightning-fast, highly customizable Options Chain UI designed to speed up setup evaluation and execution.</p>
+                        <p>This tutorial walks you through the core enhancements and demonstrates how to leverage the new interface for multi-leg strategies.</p>
+                    </div>
+
+                    <blockquote data-aos="fade-up">
+                        "Speed and visualization are critical when trading options. Our new options engine displays real-time Greek computations and payoff projections with zero lag, allowing traders to evaluate risk before clicking execute."
+                        <cite>— Sarah Jenkins, Head of Product</cite>
+                    </blockquote>
+
+                    <div id="section-chain">
+                        <h2>1. The Unified Options Chain</h2>
+                        <p>In our previous layout, calls and puts were split into separate tabs, forcing traders to toggle back and forth to inspect straddles and spreads. The new layout brings a unified grid format: Calls are placed on the left, Strike Prices are highlighted in the center, and Puts are on the right.</p>
+                        <p>This layout mimics institutional terminals. Every row lists the Last Trade Price, Net Change, Bid/Ask spreads, Volatility (IV), and the delta values for easy structural alignment. You can customize which column widgets are active in your settings panel.</p>
+                    </div>
+
+                    <div id="section-strategy">
+                        <h2>2. Multi-Leg Builder Integration</h2>
+                        <p>Executing multi-leg option strategies (such as Iron Condors, Verticals, and Calendars) previously required manually opening separate order tickets. Now, holding the <strong>Ctrl key (or long-pressing on mobile)</strong> while clicking an option Bid or Ask price automatically adds that contract as a leg to the Strategy Builder at the bottom of the screen.</p>
+                        <p>The builder tracks your net debit or credit in real-time, displays the aggregate margin requirements, and supports one-click, multi-leg market or limit order routing.</p>
+                    </div>
+
+                    <!-- Interactive Options Chains Widget -->
+                    <div id="section-simulator" class="options-container" data-aos="fade-up">
+                        <h3 style="margin-top: 0; color: var(--accent-color); font-size: 24px;"><i class="fas fa-cubes" style="margin-right: 10px;"></i>Interactive Options Chain & Payoff Simulator</h3>
+                        <p style="font-size: 15px; margin-bottom: 20px; color: var(--text-muted);">Test the interface. Click a contract row to buy a Call or Put option on Stackly stock (STKLY current price: $100.00). The widget will dynamically calculate premium costs, breakeven, and payoffs.</p>
+                        
+                        <div class="option-type-tab">
+                            <span style="font-weight:600; color:var(--text-light)">Stock Price: $100.00</span>
+                        </div>
+
+                        <div style="overflow-x: auto;">
+                            <table class="options-table">
+                                <thead>
+                                    <tr>
+                                        <th colspan="3">CALLS</th>
+                                        <th class="strike-cell" style="background: rgba(140, 216, 188, 0.1);">STRIKE</th>
+                                        <th colspan="3">PUTS</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Bid</th>
+                                        <th>Ask</th>
+                                        <th>Delta</th>
+                                        <th class="strike-cell">Price</th>
+                                        <th>Delta</th>
+                                        <th>Bid</th>
+                                        <th>Ask</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr onclick="selectOption('call', 90, 11.20, 0.85, this)">
+                                        <td class="text-green">11.00</td>
+                                        <td class="text-green">11.20</td>
+                                        <td>0.85</td>
+                                        <td class="strike-cell">90.00</td>
+                                        <td>-0.12</td>
+                                        <td class="text-red">0.85</td>
+                                        <td class="text-red">0.95</td>
+                                    </tr>
+                                    <tr onclick="selectOption('call', 95, 7.10, 0.68, this)">
+                                        <td class="text-green">6.95</td>
+                                        <td class="text-green">7.10</td>
+                                        <td>0.68</td>
+                                        <td class="strike-cell">95.00</td>
+                                        <td>-0.28</td>
+                                        <td class="text-red">1.95</td>
+                                        <td class="text-red">2.05</td>
+                                    </tr>
+                                    <tr onclick="selectOption('call', 100, 3.80, 0.50, this)">
+                                        <td class="text-green">3.65</td>
+                                        <td class="text-green">3.80</td>
+                                        <td>0.50</td>
+                                        <td class="strike-cell">100.00</td>
+                                        <td>-0.50</td>
+                                        <td class="text-red">3.75</td>
+                                        <td class="text-red">3.90</td>
+                                    </tr>
+                                    <tr onclick="selectOption('call', 105, 1.85, 0.32, this)">
+                                        <td class="text-green">1.75</td>
+                                        <td class="text-green">1.85</td>
+                                        <td>0.32</td>
+                                        <td class="strike-cell">105.00</td>
+                                        <td>-0.68</td>
+                                        <td class="text-red">6.80</td>
+                                        <td class="text-red">7.00</td>
+                                    </tr>
+                                    <tr onclick="selectOption('call', 110, 0.75, 0.15, this)">
+                                        <td class="text-green">0.65</td>
+                                        <td class="text-green">0.75</td>
+                                        <td>0.15</td>
+                                        <td class="strike-cell">110.00</td>
+                                        <td>-0.85</td>
+                                        <td class="text-red">10.60</td>
+                                        <td class="text-red">10.85</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Selected Option Payoff Details -->
+                        <div class="opt-payoff-box" id="payoff-box" style="display:none;">
+                            <h4 id="payoff-title" style="margin-top:0; margin-bottom:15px; color:var(--accent-color);">Selected Position Details</h4>
+                            <div class="payoff-grid">
+                                <div>
+                                    <span class="result-label">Premium Cost</span>
+                                    <div class="payoff-value" id="payoff-cost" style="color:white;">$380</div>
+                                </div>
+                                <div>
+                                    <span class="result-label">Breakeven Price</span>
+                                    <div class="payoff-value" id="payoff-breakeven" style="color:white;">$103.80</div>
+                                </div>
+                                <div>
+                                    <span class="result-label">Max Risk</span>
+                                    <div class="payoff-value text-red" id="payoff-risk">-$380</div>
+                                </div>
+                            </div>
+                            <p style="font-size: 13px; color: var(--text-muted); margin-top: 15px; margin-bottom: 0; line-height: 1.4;" id="payoff-narrative">
+                                This Call option gives you the right to purchase 100 shares of STKLY at $100.00. You need the stock price to climb above $103.80 by expiration to make a profit.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div id="section-visuals">
+                        <h2>3. Real-Time Payoff Chart Overlay</h2>
+                        <p>One of the most requested features is the interactive payoff graph. When configuring spreads in the builder, the chart updates dynamically to display profit and loss bounds based on expiration dates and price zones.</p>
+                        <p>This visual indicator overlay helps you locate high-probability setups by drawing green shades for profitable zones and red shades for risk boundaries, ensuring clear confirmation before submitting the trade ticket.</p>
+                    </div>
+
+                    <div id="section-conclusion">
+                        <h2>Summary of Key Interface Hotkeys</h2>
+                        <ul>
+                            <li><strong>Left-Click (or Tap):</strong> Select option line to pull up detail cards and Greek variables.</li>
+                            <li><strong>Ctrl + Click:</strong> Queue the contract leg into the Multi-Leg Strategy Builder.</li>
+                            <li><strong>Right-Click (Hold):</strong> Toggle trade parameters (buy/sell, calls/puts, size).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Sidebar (Right Column) -->
+                <div class="blog-sidebar">
+                    <!-- Widget 1: Author Card -->
+                    <div class="sidebar-widget author-info-card">
+                        <img src="assets/images/person_sarah.webp" alt="Sarah Jenkins">
+                        <h5>Sarah Jenkins</h5>
+                        <span>Head of Product</span>
+                        <p>Sarah oversees the design and deployment of Stackly's trading platforms. She previously managed derivatives workflows at global banks.</p>
+                    </div>
+
+                    <!-- Widget 2: Table of Contents -->
+                    <div class="sidebar-widget">
+                        <h4>Table of Contents</h4>
+                        <ul class="toc-list">
+                            <li><a href="#section-intro" class="active">Introduction</a></li>
+                            <li><a href="#section-chain">1. Unified Options Chain</a></li>
+                            <li><a href="#section-strategy">2. Multi-Leg Builder</a></li>
+                            <li><a href="#section-simulator">3. Options Simulator</a></li>
+                            <li><a href="#section-visuals">4. Payoff Chart Overlay</a></li>
+                            <li><a href="#section-conclusion">5. Navigation Hotkeys</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Widget 3: Share Post -->
+                    <div class="sidebar-widget">
+                        <h4>Share This Article</h4>
+                        <div class="share-links">
+                            <a href="#" class="share-btn fb"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="share-btn tw"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="share-btn in"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="share-btn wa"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Related Posts -->
+    <section class="section-light" style="border-top: 1px solid rgba(0, 0, 0, 0.05); padding: 80px 5%;">
+        <div class="container">
+            <h3 style="font-size: 28px; margin-bottom: 40px; color: var(--primary-color);">Related Articles</h3>
+            <div class="grid-3">
+                <!-- Related 1 -->
+                <div class="card" style="padding: 0; overflow: hidden; background: white; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 10px 30px rgba(0,0,0,0.03); border-radius: 16px;">
+                    <div style="height: 180px; background: url('assets/images/blog_indicator.webp') center/cover;"></div>
+                    <div style="padding: 20px; color: var(--text-dark);">
+                        <span style="color: var(--secondary-color); font-size: 11px; font-weight: 700;">Jun 15, 2026</span>
+                        <h4 style="margin: 8px 0 12px; font-size: 16px; font-weight: 700; color: var(--primary-color);">5 Technical Indicators Every Trader Needs</h4>
+                        <a href="blog-technical-indicators.html" style="color: var(--secondary-color); font-weight: 700; font-size: 13px; text-decoration: none;">Read Article &rarr;</a>
+                    </div>
+                </div>
+                <!-- Related 2 -->
+                <div class="card" style="padding: 0; overflow: hidden; background: white; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 10px 30px rgba(0,0,0,0.03); border-radius: 16px;">
+                    <div style="height: 180px; background: url('assets/images/blog_risk.webp') center/cover;"></div>
+                    <div style="padding: 20px; color: var(--text-dark);">
+                        <span style="color: var(--secondary-color); font-size: 11px; font-weight: 700;">Jun 12, 2026</span>
+                        <h4 style="margin: 8px 0 12px; font-size: 16px; font-weight: 700; color: var(--primary-color);">How to Manage Risk During High Volatility</h4>
+                        <a href="blog-risk-management.html" style="color: var(--secondary-color); font-weight: 700; font-size: 13px; text-decoration: none;">Read Article &rarr;</a>
+                    </div>
+                </div>
+                <!-- Related 3 -->
+                <div class="card" style="padding: 0; overflow: hidden; background: white; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 10px 30px rgba(0,0,0,0.03); border-radius: 16px;">
+                    <div style="height: 180px; background: url('assets/images/blog_dividends.png') center/cover;"></div>
+                    <div style="padding: 20px; color: var(--text-dark);">
+                        <span style="color: var(--secondary-color); font-size: 11px; font-weight: 700;">May 28, 2026</span>
+                        <h4 style="margin: 8px 0 12px; font-size: 16px; font-weight: 700; color: var(--primary-color);">Dividend Investing for Beginners</h4>
+                        <a href="blog-dividend-investing.html" style="color: var(--secondary-color); font-weight: 700; font-size: 13px; text-decoration: none;">Read Article &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo-container" style="margin-bottom: 20px;">
+                        <img src="assets/images/logo.webp" alt="Stackly Logo" onclick="window.location.href='index.html';" style="cursor: pointer; height: 40px;">
+                    </div>
+                    <p>An award-winning CEO agency with disciplines in digital marketing and website development. We provide the best tools for successful trading.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="service.html">Our Services</a></li>
+                        <li><a href="blog.html">Latest News</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="404.html">Terms of Service</a></li>
+                        <li><a href="404.html">Privacy Policy</a></li>
+                        <li><a href="404.html">Risk Warning</a></li>
+                        <li><a href="404.html">Cookie Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul class="footer-links">
+                        <li><span style="color: var(--text-muted)"><i class="fas fa-envelope" style="margin-right: 8px;"></i>Email:</span><br><a href="mailto:support@Stackly.com">support@Stackly.com</a></li>
+                        <li><span style="color: var(--text-muted)"><i class="fas fa-phone" style="margin-right: 8px;"></i>Phone:</span><br><a href="tel:+919871567890">+91 (987) 1567-890</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 Stackly Trading Inc. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="dummy-handler.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        window.addEventListener('load', function() {
+            document.body.classList.add('loaded');
+        });
+
+        // Interactive Options Chain Simulator Script
+        function selectOption(type, strike, ask, delta, cell) {
+            // Remove highlight from all table cells/rows
+            const rows = document.querySelectorAll('.options-table tbody tr');
+            rows.forEach(r => {
+                const tds = r.querySelectorAll('td');
+                tds.forEach(t => t.classList.remove('option-selected-call', 'option-selected-put'));
+            });
+
+            // Highlight selected cell
+            const highlightClass = (type === 'call') ? 'option-selected-call' : 'option-selected-put';
+            // Highlight the clicked row's columns
+            const cells = cell.querySelectorAll('td');
+            if (type === 'call') {
+                cells[0].classList.add(highlightClass);
+                cells[1].classList.add(highlightClass);
+            } else {
+                cells[5].classList.add(highlightClass);
+                cells[6].classList.add(highlightClass);
+            }
+
+            // Calculation
+            const qty = 1; // 1 contract = 100 shares
+            const multiplier = 100;
+            const cost = ask * multiplier * qty;
+            const breakeven = (type === 'call') ? (strike + ask) : (strike - ask);
+
+            // Display Results
+            document.getElementById('payoff-box').style.display = 'block';
+            document.getElementById('payoff-cost').innerText = `$${cost.toLocaleString('en-US')}`;
+            document.getElementById('payoff-breakeven').innerText = `$${breakeven.toFixed(2)}`;
+            document.getElementById('payoff-risk').innerText = `-$${cost.toLocaleString('en-US')}`;
+
+            // Narrative update
+            const optionLabel = `${type.toUpperCase()} option strike $${strike.toFixed(2)}`;
+            const actionText = (type === 'call') ? 'purchase' : 'sell';
+            const movementText = (type === 'call') ? 'above' : 'below';
+            
+            document.getElementById('payoff-narrative').innerHTML = `
+                This <strong>${optionLabel}</strong> premium costs $${ask} per share, totaling <strong>$${cost}</strong>. 
+                It gives you the right to ${actionText} 100 shares of STKLY at strike price $${strike.toFixed(2)}. 
+                To generate profit at expiration, the underlying stock price must move ${movementText} the breakeven price of <strong>$${breakeven.toFixed(2)}</strong>.
+            `;
+            
+            // Scroll down a bit to show results
+            document.getElementById('payoff-box').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Reading Progress Bar Script
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('reading-progress-bar').style.width = scrolled + '%';
+        });
+
+        // Highlight TOC Link on Scroll
+        const sections = document.querySelectorAll('.blog-article > div');
+        const tocLinks = document.querySelectorAll('.toc-list a');
+
+        window.addEventListener('scroll', () => {
+            let currentSectionId = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.scrollY >= (sectionTop - 250)) {
+                    currentSectionId = section.getAttribute('id');
+                }
+            });
+            tocLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSectionId}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

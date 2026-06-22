@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn how to manage risk during periods of high market volatility using position sizing, stop-loss calculations, and correlation hedges.">
+    <title>How to Manage Risk During High Volatility - Stackly Blog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* Custom styles for interactive risk calculator */
+        .calculator-container {
+            background: #12181f;
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px 0;
+            color: white;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .calc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 20px;
+        }
+        @media (max-width: 768px) {
+            .calc-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .calc-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .calc-input-group label {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        .calc-input-group input {
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.05);
+            color: white;
+            font-size: 16px;
+            outline: none;
+            transition: var(--transition);
+        }
+        .calc-input-group input:focus {
+            border-color: var(--accent-color);
+            background: rgba(255,255,255,0.08);
+        }
+        .calc-results-box {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 10px;
+        }
+        .result-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        .result-label {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+        .result-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+        .risk-gauge-container {
+            margin-top: 10px;
+        }
+        .risk-gauge-bar {
+            height: 8px;
+            border-radius: 4px;
+            background: #334155;
+            overflow: hidden;
+            position: relative;
+        }
+        .risk-gauge-fill {
+            height: 100%;
+            width: 0%;
+            background: #4ade80;
+            transition: width 0.3s ease, background-color 0.3s ease;
+        }
+        .risk-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+        .risk-conservative { background: rgba(74, 222, 128, 0.15); color: #4ade80; }
+        .risk-moderate { background: rgba(250, 204, 21, 0.15); color: #facc15; }
+        .risk-aggressive { background: rgba(248, 113, 113, 0.15); color: #f87171; }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <img src="assets/images/logo.webp" alt="Loading Stackly..." class="preloader-logo">
+    </div>
+
+    <!-- Reading Progress Bar -->
+    <div id="reading-progress-container">
+        <div id="reading-progress-bar"></div>
+    </div>
+
+    <!-- Header / Navigation -->
+    <header>
+        <div class="logo-container">
+            <img src="assets/images/logo.webp" alt="Stackly Logo" onclick="window.location.href='index.html';" style="cursor: pointer; height: 40px;">
+        </div>
+        <div class="mobile-menu-toggle"><i class="fas fa-bars"></i></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html" class="login-btn">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Blog Detail Hero -->
+    <section class="blog-detail-hero" data-aos="fade-up">
+        <div class="container">
+            <div class="meta-info">
+                <span><i class="far fa-calendar"></i> June 12, 2026</span>
+                <span>•</span>
+                <span><i class="far fa-folder"></i> Forex Strategies</span>
+                <span>•</span>
+                <span><i class="far fa-clock"></i> 6 Min Read</span>
+            </div>
+            <h1>How to Manage Risk During High Volatility: Position Sizing and Capital Preservation</h1>
+            <div class="author-strip">
+                <img src="assets/images/person_elena.webp" alt="Elena Rostova">
+                <div class="author-details">
+                    <h4>Elena Rostova</h4>
+                    <p>Risk Management Specialist, Stackly</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Content Layout -->
+    <section class="section-light" style="padding-top: 50px;">
+        <div class="container">
+            <div class="blog-detail-layout">
+                
+                <!-- Main Content (Left Column) -->
+                <div class="blog-article">
+                    <img src="assets/images/blog_risk.webp" alt="Risk Management Visualization" style="width: 100%; border-radius: 16px; margin-bottom: 30px;" data-aos="fade-up">
+                    
+                    <div id="section-intro">
+                        <p>Volatility is a double-edged sword. It is the fuel that creates price movements and profitable opportunities, yet it is also the primary driver of catastrophic trading account drawdowns. When markets shift into high-volatility regimes, traditional parameters must be adjusted to defend equity curves.</p>
+                        <p>In this article, we outline a mathematically rigorous approach to capital preservation during volatile macro environments, detailing position sizing models, stops adjustments, and correlation management.</p>
+                    </div>
+
+                    <blockquote data-aos="fade-up">
+                        "Amateur traders focus on how much they can make. Professional traders focus exclusively on how much they can lose. If you control the downside, the upside will take care of itself."
+                        <cite>— Elena Rostova, Risk Management Specialist</cite>
+                    </blockquote>
+
+                    <div id="section-rule">
+                        <h2>1. The Golden 1% Rule</h2>
+                        <p>The foundation of capital preservation is the percentage risk rule. As a baseline, you should never risk more than 1% to 2% of your total account equity on any single trade setup. If you run a $50,000 account, a 1% risk limit means your stop-loss, if hit, will trigger a loss of exactly $500.</p>
+                        <p>Adhering to this rule ensures that a string of losses (which happens to every trader) does not lead to terminal drawdowns. For example, a trader risking 1% per trade can withstand 10 consecutive losses and still preserve approximately 90% of their starting capital. A trader risking 10% per trade would lose over 65% of their capital in the same scenario.</p>
+                    </div>
+
+                    <div id="section-atr">
+                        <h2>2. Volatility-Adjusted Stops (The ATR Method)</h2>
+                        <p>During normal volatility, a 20-pip stop on a currency pair might be sufficient. During periods of macroeconomic news releases, the same pair might swing 50 pips in a minute. If you keep your stop-loss distances fixed, you will be shaken out prematurely.</p>
+                        <p>To avoid this, use the <strong>Average True Range (ATR)</strong> indicator to measure volatility. Set your stop-loss distance as a multiple of the current ATR (e.g., 2.0 x ATR). When volatility spikes, your stop-loss widens, allowing the trade space to breathe. To maintain the 1% risk rule, you must decrease your trade size proportionally as the stop-loss distance increases.</p>
+                    </div>
+
+                    <!-- Interactive Risk Calculator Widget -->
+                    <div id="section-calculator" class="calculator-container" data-aos="fade-up">
+                        <h3 style="margin-top: 0; color: var(--accent-color); font-size: 24px;"><i class="fas fa-calculator" style="margin-right: 10px;"></i>Interactive Position Sizing & Risk Calculator</h3>
+                        <p style="font-size: 15px; margin-bottom: 20px; color: var(--text-muted);">Ensure your trades comply with strict risk rules. Input your parameters below to dynamically calculate your maximum position size and dollar risk.</p>
+                        
+                        <div class="calc-grid">
+                            <!-- Inputs -->
+                            <div style="display: flex; flex-direction: column; gap: 15px;">
+                                <div class="calc-input-group">
+                                    <label for="acc-balance">Account Balance ($)</label>
+                                    <input type="number" id="acc-balance" value="10000" min="100" step="500">
+                                </div>
+                                <div class="calc-input-group">
+                                    <label for="risk-pct">Risk per Trade (%)</label>
+                                    <input type="number" id="risk-pct" value="1" min="0.1" max="10" step="0.1">
+                                </div>
+                                <div class="calc-input-group">
+                                    <label for="entry-price">Entry Price ($)</label>
+                                    <input type="number" id="entry-price" value="150" min="0.01" step="1">
+                                </div>
+                                <div class="calc-input-group">
+                                    <label for="sl-price">Stop Loss Price ($)</label>
+                                    <input type="number" id="sl-price" value="147" min="0.01" step="1">
+                                </div>
+                            </div>
+                            
+                            <!-- Outputs -->
+                            <div class="calc-results-box">
+                                <div class="result-item">
+                                    <span class="result-label">Dollar Value at Risk</span>
+                                    <span class="result-value" id="res-dollar-risk">$100.00</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">Stop Loss Distance</span>
+                                    <span class="result-value" id="res-sl-dist">2.00%</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">Max Position Size (Shares)</span>
+                                    <span class="result-value" id="res-pos-size" style="color: var(--text-light);">33.3 units</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">Total Trade Value</span>
+                                    <span class="result-value" id="res-trade-val" style="color: var(--text-light);">$5,000.00</span>
+                                </div>
+                                <div class="risk-gauge-container">
+                                    <span class="result-label" style="display:block; margin-bottom:5px;">Risk Exposure Level</span>
+                                    <div class="risk-gauge-bar">
+                                        <div class="risk-gauge-fill" id="risk-gauge"></div>
+                                    </div>
+                                    <span class="risk-badge risk-conservative" id="risk-badge-text">Conservative Risk</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="section-correlation">
+                        <h2>3. The Correlation Trap: Diversification Illusion</h2>
+                        <p>Many traders believe they are diversified because they hold five different trades. However, if those positions are in highly correlated assets—such as EUR/USD, GBP/USD, and AUD/USD, which are all inversely tied to the U.S. Dollar Index (DXY)—they are effectively running a single massive trade.</p>
+                        <p>When volatility strikes, correlations tend to converge toward 1.0. If the USD surges, all three of those positions will likely hit their stop losses simultaneously. Limit your exposure to any single currency group or market sector to protect your account against unexpected systemic moves.</p>
+                    </div>
+
+                    <div id="section-leverage">
+                        <h2>4. Leverage: The Accelerator of Ruin</h2>
+                        <p>Leverage allows you to control larger positions with smaller capital outlays. While leverage can boost returns during quiet markets, it operates as an accelerator of ruin in highly volatile regimes.</p>
+                        <p>Consider reducing your effective leverage (the actual size of your positions divided by your account equity) during high-volatility weeks. By trading smaller nominal sizes and relying on wider, volatility-adjusted stop losses, you keep the dollar risk constant while minimizing the impact of slippage and execution spread widening.</p>
+                    </div>
+
+                    <div id="section-takeaways">
+                        <h2>Risk Mitigation Checklist</h2>
+                        <ul>
+                            <li><strong>Determine stop loss before entry:</strong> Never open a trade without knowing exactly where you will exit if you are wrong.</li>
+                            <li><strong>Adjust size, not stop:</strong> If the market requires a wider stop loss, lower your unit sizing. Do not widen your stop loss without adjusting position size.</li>
+                            <li><strong>Avoid news trading:</strong> Spreads widen significantly during high-impact news releases, causing slippage. Step aside or clear positions before major macro events.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Sidebar (Right Column) -->
+                <div class="blog-sidebar">
+                    <!-- Widget 1: Author Card -->
+                    <div class="sidebar-widget author-info-card">
+                        <img src="assets/images/person_elena.webp" alt="Elena Rostova">
+                        <h5>Elena Rostova</h5>
+                        <span>Risk Management Specialist</span>
+                        <p>Elena has a master's in quantitative finance and spent 8 years as a risk model validator for European clearinghouses before joining Stackly.</p>
+                    </div>
+
+                    <!-- Widget 2: Table of Contents -->
+                    <div class="sidebar-widget">
+                        <h4>Table of Contents</h4>
+                        <ul class="toc-list">
+                            <li><a href="#section-intro" class="active">Introduction</a></li>
+                            <li><a href="#section-rule">1. The Golden 1% Rule</a></li>
+                            <li><a href="#section-atr">2. Volatility-Adjusted Stops</a></li>
+                            <li><a href="#section-calculator">3. Risk Calculator Tool</a></li>
+                            <li><a href="#section-correlation">4. Correlation Management</a></li>
+                            <li><a href="#section-leverage">5. Leverage Control</a></li>
+                            <li><a href="#section-takeaways">6. Risk Mitigation Checklist</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Widget 3: Share Post -->
+                    <div class="sidebar-widget">
+                        <h4>Share This Article</h4>
+                        <div class="share-links">
+                            <a href="#" class="share-btn fb"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="share-btn tw"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="share-btn in"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="share-btn wa"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Related Posts -->
+    <section class="section-light" style="border-top: 1px solid rgba(0, 0, 0, 0.05); padding: 80px 5%;">
+        <div class="container">
+            <h3 style="font-size: 28px; margin-bottom: 40px; color: var(--primary-color);">Related Articles</h3>
+            <div class="grid-3">
+                <!-- Related 1 -->
+                <div class="card" style="padding: 0; overflow: hidden; background: white; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 10px 30px rgba(0,0,0,0.03); border-radius: 16px;">
+                    <div style="height: 180px; background: url('assets/images/featured_blog.webp') center/cover;"></div>
+                    <div style="padding: 20px; color: var(--text-dark);">
+                        <span style="color: var(--secondary-color); font-size: 11px; font-weight: 700;">Jun 18, 2026</span>
+                        <h4 style="margin: 8px 0 12px; font-size: 16px; font-weight: 700; color: var(--primary-color);">Understanding the Macro Environment in 2026</h4>
+                        <a href="blog-macro-environment.html" style="color: var(--secondary-color); font-weight: 700; font-size: 13px; text-decoration: none;">Read Article &rarr;</a>
+                    </div>
+                </div>
+                <!-- Related 2 -->
+                <div class="card" style="padding: 0; overflow: hidden; background: white; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 10px 30px rgba(0,0,0,0.03); border-radius: 16px;">
+                    <div style="height: 180px; background: url('assets/images/blog_indicator.webp') center/cover;"></div>
+                    <div style="padding: 20px; color: var(--text-dark);">
+                        <span style="color: var(--secondary-color); font-size: 11px; font-weight: 700;">Jun 15, 2026</span>
+                        <h4 style="margin: 8px 0 12px; font-size: 16px; font-weight: 700; color: var(--primary-color);">5 Technical Indicators Every Trader Needs</h4>
+                        <a href="blog-technical-indicators.html" style="color: var(--secondary-color); font-weight: 700; font-size: 13px; text-decoration: none;">Read Article &rarr;</a>
+                    </div>
+                </div>
+                <!-- Related 3 -->
+                <div class="card" style="padding: 0; overflow: hidden; background: white; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 10px 30px rgba(0,0,0,0.03); border-radius: 16px;">
+                    <div style="height: 180px; background: url('assets/images/blog_psychology.png') center/cover;"></div>
+                    <div style="padding: 20px; color: var(--text-dark);">
+                        <span style="color: var(--secondary-color); font-size: 11px; font-weight: 700;">Jun 05, 2026</span>
+                        <h4 style="margin: 8px 0 12px; font-size: 16px; font-weight: 700; color: var(--primary-color);">The Psychology of a Winning Trader</h4>
+                        <a href="blog-winning-psychology.html" style="color: var(--secondary-color); font-weight: 700; font-size: 13px; text-decoration: none;">Read Article &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo-container" style="margin-bottom: 20px;">
+                        <img src="assets/images/logo.webp" alt="Stackly Logo" onclick="window.location.href='index.html';" style="cursor: pointer; height: 40px;">
+                    </div>
+                    <p>An award-winning CEO agency with disciplines in digital marketing and website development. We provide the best tools for successful trading.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="service.html">Our Services</a></li>
+                        <li><a href="blog.html">Latest News</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="404.html">Terms of Service</a></li>
+                        <li><a href="404.html">Privacy Policy</a></li>
+                        <li><a href="404.html">Risk Warning</a></li>
+                        <li><a href="404.html">Cookie Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul class="footer-links">
+                        <li><span style="color: var(--text-muted)"><i class="fas fa-envelope" style="margin-right: 8px;"></i>Email:</span><br><a href="mailto:support@Stackly.com">support@Stackly.com</a></li>
+                        <li><span style="color: var(--text-muted)"><i class="fas fa-phone" style="margin-right: 8px;"></i>Phone:</span><br><a href="tel:+919871567890">+91 (987) 1567-890</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 Stackly Trading Inc. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="dummy-handler.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        window.addEventListener('load', function() {
+            document.body.classList.add('loaded');
+        });
+
+        // Position Sizing Calculator Script
+        const balanceInput = document.getElementById('acc-balance');
+        const riskPctInput = document.getElementById('risk-pct');
+        const entryPriceInput = document.getElementById('entry-price');
+        const slPriceInput = document.getElementById('sl-price');
+
+        const resDollarRisk = document.getElementById('res-dollar-risk');
+        const resSlDist = document.getElementById('res-sl-dist');
+        const resPosSize = document.getElementById('res-pos-size');
+        const resTradeVal = document.getElementById('res-trade-val');
+        const riskGauge = document.getElementById('risk-gauge');
+        const riskBadge = document.getElementById('risk-badge-text');
+
+        function calculateRisk() {
+            const balance = parseFloat(balanceInput.value) || 0;
+            const riskPct = parseFloat(riskPctInput.value) || 0;
+            const entry = parseFloat(entryPriceInput.value) || 0;
+            const stopLoss = parseFloat(slPriceInput.value) || 0;
+
+            if (balance <= 0 || entry <= 0 || stopLoss <= 0 || entry === stopLoss) {
+                return;
+            }
+
+            // Calculation
+            const dollarRisk = balance * (riskPct / 100);
+            const slDistance = Math.abs(entry - stopLoss);
+            const slPct = (slDistance / entry) * 100;
+            const positionSize = dollarRisk / slDistance;
+            const totalValue = positionSize * entry;
+
+            // Output Formatting
+            resDollarRisk.innerText = `$${dollarRisk.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            resSlDist.innerText = `${slPct.toFixed(2)}%`;
+            resPosSize.innerText = `${positionSize.toLocaleString('en-US', {maximumFractionDigits: 1})} units`;
+            resTradeVal.innerText = `$${totalValue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+
+            // Gauge & Badge updates
+            let gaugeWidth = Math.min((riskPct / 3) * 100, 100);
+            riskGauge.style.width = `${gaugeWidth}%`;
+
+            if (riskPct <= 1.0) {
+                riskGauge.style.backgroundColor = '#4ade80'; // Green
+                riskBadge.innerText = 'Conservative Risk';
+                riskBadge.className = 'risk-badge risk-conservative';
+            } else if (riskPct <= 2.5) {
+                riskGauge.style.backgroundColor = '#facc15'; // Yellow
+                riskBadge.innerText = 'Moderate Risk';
+                riskBadge.className = 'risk-badge risk-moderate';
+            } else {
+                riskGauge.style.backgroundColor = '#f87171'; // Red
+                riskBadge.innerText = 'Aggressive Risk';
+                riskBadge.className = 'risk-badge risk-aggressive';
+            }
+        }
+
+        // Add Listeners
+        [balanceInput, riskPctInput, entryPriceInput, slPriceInput].forEach(input => {
+            input.addEventListener('input', calculateRisk);
+        });
+
+        // Initialize Calculator
+        calculateRisk();
+
+        // Reading Progress Bar Script
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('reading-progress-bar').style.width = scrolled + '%';
+        });
+
+        // Highlight TOC Link on Scroll
+        const sections = document.querySelectorAll('.blog-article > div');
+        const tocLinks = document.querySelectorAll('.toc-list a');
+
+        window.addEventListener('scroll', () => {
+            let currentSectionId = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.scrollY >= (sectionTop - 250)) {
+                    currentSectionId = section.getAttribute('id');
+                }
+            });
+            tocLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSectionId}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

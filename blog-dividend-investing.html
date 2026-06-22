@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn the fundamentals of dividend investing. Discover how to build a compound interest engine with top-yielding growth stocks.">
+    <title>Dividend Investing for Beginners - Stackly Blog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* Custom styles for interactive compounding calculator */
+        .dividend-calc-container {
+            background: #12181f;
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px 0;
+            color: white;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .slider-group {
+            margin-bottom: 20px;
+        }
+        .slider-group label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .slider-group label span {
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+        .slider-input {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: #1e293b;
+            outline: none;
+        }
+        .slider-input::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(140, 216, 188, 0.4);
+            transition: var(--transition);
+        }
+        .slider-input::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+        .calc-results-block {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 25px;
+        }
+        .projection-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            text-align: center;
+        }
+        .proj-label {
+            color: var(--text-muted);
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+        .proj-val {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <img src="assets/images/logo.webp" alt="Loading Stackly..." class="preloader-logo">
+    </div>
+
+    <!-- Reading Progress Bar -->
+    <div id="reading-progress-container">
+        <div id="reading-progress-bar"></div>
+    </div>
+
+    <!-- Header / Navigation -->
+    <header>
+        <div class="logo-container">
+            <img src="assets/images/logo.webp" alt="Stackly Logo" onclick="window.location.href='index.html';" style="cursor: pointer; height: 40px;">
+        </div>
+        <div class="mobile-menu-toggle"><i class="fas fa-bars"></i></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html" class="login-btn">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Blog Detail Hero -->
+    <section class="blog-detail-hero" data-aos="fade-up">
+        <div class="container">
+            <div class="meta-info">
+                <span><i class="far fa-calendar"></i> May 28, 2026</span>
+                <span>•</span>
+                <span><i class="far fa-folder"></i> Stock Earnings</span>
+                <span>•</span>
+                <span><i class="far fa-clock"></i> 5 Min Read</span>
+            </div>
+            <h1>Dividend Investing for Beginners: The Power of Compounding Cash Flow</h1>
+            <div class="author-strip">
+                <img src="assets/images/person_sarah.webp" alt="Sarah Jenkins">
+                <div class="author-details">
+                    <h4>Sarah Jenkins</h4>
+                    <p>Head of Product, Stackly</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Content Layout -->
+    <section class="section-light" style="padding-top: 50px;">
+        <div class="container">
+            <div class="blog-detail-layout">
+                
+                <!-- Main Content (Left Column) -->
+                <div class="blog-article">
+                    <img src="assets/images/blog_dividends.png" alt="Dividends Growth Illustration" style="width: 100%; border-radius: 16px; margin-bottom: 30px;" data-aos="fade-up">
+                    
+                    <div id="section-intro">
+                        <p>Most beginners associate stock trading with buying low and selling high. However, capital appreciation is only one component of total stock return. The unsung hero of long-term wealth creation is dividend investing—the practice of buying shares in mature companies that return a portion of their earnings directly to shareholders as cash payouts.</p>
+                        <p>In this guide, we break down how dividends work, how to evaluate dividend stocks, and the mathematics of compounding interest.</p>
+                    </div>
+
+                    <blockquote data-aos="fade-up">
+                        "Compound interest is the eighth wonder of the world. He who understands it, earns it... he who doesn't, pays it. Reinvested dividends turn a modest savings rate into a multi-generational cash engine."
+                        <cite>— Sarah Jenkins, Head of Product</cite>
+                    </blockquote>
+
+                    <div id="section-basics">
+                        <h2>1. Dividend Yield vs. Dividend Growth</h2>
+                        <p>When starting out, it is tempting to scan stocks for the highest **Dividend Yield** (the annual payout divided by the stock price). If a stock trades at $100 and pays $8 in dividends annually, its yield is 8%. However, exceptionally high yields are often a warning sign (a "yield trap") suggesting the market expects the company to cut its dividend due to financial distress.</p>
+                        <p>Instead, look for **Dividend Growth** stocks (often called Dividend Aristocrats if they have raised payouts for 25+ consecutive years). These companies possess robust balance sheets and can grow payouts over time, keeping your passive income stream ahead of macro inflation rates.</p>
+                    </div>
+
+                    <div id="section-payout">
+                        <h2>2. The Payout Ratio: Safety Valve</h2>
+                        <p>To determine if a dividend is safe, inspect the company's **Payout Ratio** (dividends paid divided by net net income). A payout ratio of 40% means the company keeps 60% of its earnings to fund internal expansion, leaving a wide safety buffer to protect the dividend if earnings drop temporarily.</p>
+                        <p>If the payout ratio exceeds 80%, the company is returning almost all earnings to shareholders. This leaves no room for error, making the dividend highly susceptible to being cut or suspended if business slows down.</p>
+                    </div>
+
+                    <!-- Interactive Compound Calculator Widget -->
+                    <div id="section-calculator" class="dividend-calc-container" data-aos="fade-up">
+                        <h3 style="margin-top: 0; color: var(--accent-color); font-size: 24px;"><i class="fas fa-percent" style="margin-right: 10px;"></i>Interactive Compound Growth Calculator</h3>
+                        <p style="font-size: 15px; margin-bottom: 20px; color: var(--text-muted);">See the math in action. Adjust the sliders below to simulate how reinvesting dividend payments accelerates your portfolio growth over time.</p>
+                        
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                            <div class="slider-group">
+                                <label for="initial-val">Initial Investment: <span id="lbl-initial">$5,000</span></label>
+                                <input type="range" id="initial-val" class="slider-input" min="1000" max="100000" step="1000" value="5000">
+                            </div>
+                            <div class="slider-group">
+                                <label for="monthly-val">Monthly Contribution: <span id="lbl-monthly">$300</span></label>
+                                <input type="range" id="monthly-val" class="slider-input" min="0" max="5000" step="50" value="300">
+                            </div>
+                            <div class="slider-group">
+                                <label for="yield-val">Annual Dividend Yield: <span id="lbl-yield">4.0%</span></label>
+                                <input type="range" id="yield-val" class="slider-input" min="1" max="12" step="0.5" value="4">
+                            </div>
+                            <div class="slider-group">
+                                <label for="years-val">Years to Hold: <span id="lbl-years">15 Years</span></label>
+                                <input type="range" id="years-val" class="slider-input" min="5" max="35" step="1" value="15">
+                            </div>
+                        </div>
+
+                        <div class="calc-results-block">
+                            <div class="projection-grid">
+                                <div>
+                                    <div class="proj-label">Total Invested Capital</div>
+                                    <div class="proj-val" id="res-invested" style="color:white;">$59,000</div>
+                                </div>
+                                <div>
+                                    <div class="proj-label">Projected Portfolio Value</div>
+                                    <div class="proj-val" id="res-portfolio">$98,420</div>
+                                </div>
+                                <div>
+                                    <div class="proj-label">Annual Passive Income</div>
+                                    <div class="proj-val" id="res-passive">$3,936</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="section-drip">
+                        <h2>3. The Power of DRIP (Dividend Reinvestment Plan)</h2>
+                        <p>Reinvesting dividends automatically is called **DRIP**. Instead of receiving cash payouts in your bank account, your brokerage automatically uses that cash to purchase fractional shares of the underlying stock.</p>
+                        <p>This creates a compounding loop: as you own more shares, your next dividend payout is larger, which purchases even more shares, creating an exponential growth curve that operates entirely on autopilot.</p>
+                    </div>
+
+                    <div id="section-tax">
+                        <h2>4. Tax Implications and Shelters</h2>
+                        <p>In taxable accounts, dividends are subject to taxation in the year they are received—even if you reinvest them via DRIP. To optimize compounding efficiency, consider holding dividend portfolios inside tax-sheltered accounts (like IRAs, 401ks, or ISAs).</p>
+                        <p>Tax shelters allow dividends to compound completely tax-free, saving substantial capital drag and accelerating your path to financial freedom.</p>
+                    </div>
+
+                    <div id="section-summary">
+                        <h2>Step-by-Step Dividend Checklist</h2>
+                        <ul>
+                            <li><strong>Focus on Dividend Aristocrats:</strong> Prioritize companies with a long track record of consistent dividend growth.</li>
+                            <li><strong>Watch the Payout Ratio:</strong> Ensure the payout ratio is below 60% for safety.</li>
+                            <li><strong>Turn on DRIP:</strong> Reinvest all payouts immediately to maximize compound interest.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Sidebar (Right Column) -->
+                <div class="blog-sidebar">
+                    <!-- Widget 1: Author Card -->
+                    <div class="sidebar-widget author-info-card">
+                        <img src="assets/images/person_sarah.webp" alt="Sarah Jenkins">
+                        <h5>Sarah Jenkins</h5>
+                        <span>Head of Product</span>
+                        <p>Sarah designed Stackly's automated portfolio tools. She is a strong advocate for index and dividend growth investing models.</p>
+                    </div>
+
+                    <!-- Widget 2: Table of Contents -->
+                    <div class="sidebar-widget">
+                        <h4>Table of Contents</h4>
+                        <ul class="toc-list">
+                            <li><a href="#section-intro" class="active">Introduction</a></li>
+                            <li><a href="#section-basics">1. Yield vs. Growth</a></li>
+                            <li><a href="#section-payout">2. Payout Ratio</a></li>
+                            <li><a href="#section-calculator">3. Compounding Calculator</a></li>
+                            <li><a href="#section-drip">4. The Power of DRIP</a></li>
+                            <li><a href="#section-tax">5. Tax Optimization</a></li>
+                            <li><a href="#section-summary">6. Dividend Checklist</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Widget 3: Share Post -->
+                    <div class="sidebar-widget">
+                        <h4>Share This Article</h4>
+                        <div class="share-links">
+                            <a href="#" class="share-btn fb"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="share-btn tw"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="share-btn in"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="share-btn wa"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Related Posts -->
+    <section class="section-light" style="border-top: 1px solid rgba(0, 0, 0, 0.05); padding: 80px 5%;">
+        <div class="container">
+            <h3 style="font-size: 28px; margin-bottom: 40px; color: var(--primary-color);">Related Articles</h3>
+            <div class="grid-3">
+                <!-- Related 1 -->
+                <div class="card" style="padding: 0; overflow: hidden; background: white; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 10px 30px rgba(0,0,0,0.03); border-radius: 16px;">
+                    <div style="height: 180px; background: url('assets/images/featured_blog.webp') center/cover;"></div>
+                    <div style="padding: 20px; color: var(--text-dark);">
+                        <span style="color: var(--secondary-color); font-size: 11px; font-weight: 700;">Jun 18, 2026</span>
+                        <h4 style="margin: 8px 0 12px; font-size: 16px; font-weight: 700; color: var(--primary-color);">Understanding the Macro Environment in 2026</h4>
+                        <a href="blog-macro-environment.html" style="color: var(--secondary-color); font-weight: 700; font-size: 13px; text-decoration: none;">Read Article &rarr;</a>
+                    </div>
+                </div>
+                <!-- Related 2 -->
+                <div class="card" style="padding: 0; overflow: hidden; background: white; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 10px 30px rgba(0,0,0,0.03); border-radius: 16px;">
+                    <div style="height: 180px; background: url('assets/images/blog_indicator.webp') center/cover;"></div>
+                    <div style="padding: 20px; color: var(--text-dark);">
+                        <span style="color: var(--secondary-color); font-size: 11px; font-weight: 700;">Jun 15, 2026</span>
+                        <h4 style="margin: 8px 0 12px; font-size: 16px; font-weight: 700; color: var(--primary-color);">5 Technical Indicators Every Trader Needs</h4>
+                        <a href="blog-technical-indicators.html" style="color: var(--secondary-color); font-weight: 700; font-size: 13px; text-decoration: none;">Read Article &rarr;</a>
+                    </div>
+                </div>
+                <!-- Related 3 -->
+                <div class="card" style="padding: 0; overflow: hidden; background: white; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 10px 30px rgba(0,0,0,0.03); border-radius: 16px;">
+                    <div style="height: 180px; background: url('assets/images/blog_risk.webp') center/cover;"></div>
+                    <div style="padding: 20px; color: var(--text-dark);">
+                        <span style="color: var(--secondary-color); font-size: 11px; font-weight: 700;">Jun 12, 2026</span>
+                        <h4 style="margin: 8px 0 12px; font-size: 16px; font-weight: 700; color: var(--primary-color);">How to Manage Risk During High Volatility</h4>
+                        <a href="blog-risk-management.html" style="color: var(--secondary-color); font-weight: 700; font-size: 13px; text-decoration: none;">Read Article &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo-container" style="margin-bottom: 20px;">
+                        <img src="assets/images/logo.webp" alt="Stackly Logo" onclick="window.location.href='index.html';" style="cursor: pointer; height: 40px;">
+                    </div>
+                    <p>An award-winning CEO agency with disciplines in digital marketing and website development. We provide the best tools for successful trading.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="service.html">Our Services</a></li>
+                        <li><a href="blog.html">Latest News</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="404.html">Terms of Service</a></li>
+                        <li><a href="404.html">Privacy Policy</a></li>
+                        <li><a href="404.html">Risk Warning</a></li>
+                        <li><a href="404.html">Cookie Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul class="footer-links">
+                        <li><span style="color: var(--text-muted)"><i class="fas fa-envelope" style="margin-right: 8px;"></i>Email:</span><br><a href="mailto:support@Stackly.com">support@Stackly.com</a></li>
+                        <li><span style="color: var(--text-muted)"><i class="fas fa-phone" style="margin-right: 8px;"></i>Phone:</span><br><a href="tel:+919871567890">+91 (987) 1567-890</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 Stackly Trading Inc. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="dummy-handler.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        window.addEventListener('load', function() {
+            document.body.classList.add('loaded');
+        });
+
+        // Compound Dividend Calculator Script
+        const rangeInitial = document.getElementById('initial-val');
+        const rangeMonthly = document.getElementById('monthly-val');
+        const rangeYield = document.getElementById('yield-val');
+        const rangeYears = document.getElementById('years-val');
+
+        const lblInitial = document.getElementById('lbl-initial');
+        const lblMonthly = document.getElementById('lbl-monthly');
+        const lblYield = document.getElementById('lbl-yield');
+        const lblYears = document.getElementById('lbl-years');
+
+        const resInvested = document.getElementById('res-invested');
+        const resPortfolio = document.getElementById('res-portfolio');
+        const resPassive = document.getElementById('res-passive');
+
+        function calculateCompounding() {
+            const initial = parseFloat(rangeInitial.value) || 0;
+            const monthly = parseFloat(rangeMonthly.value) || 0;
+            const rYield = (parseFloat(rangeYield.value) || 0) / 100;
+            const years = parseInt(rangeYears.value) || 0;
+
+            lblInitial.innerText = `$${initial.toLocaleString('en-US')}`;
+            lblMonthly.innerText = `$${monthly.toLocaleString('en-US')}`;
+            lblYield.innerText = `${(rYield * 100).toFixed(1)}%`;
+            lblYears.innerText = `${years} Years`;
+
+            // Calculate projections
+            // Simple model: compound monthly with dividends reinvested
+            const periods = years * 12;
+            const rate = rYield / 12;
+            
+            let portfolioValue = initial;
+            let totalInvested = initial;
+
+            for (let i = 0; i < periods; i++) {
+                portfolioValue = portfolioValue * (1 + rate) + monthly;
+                totalInvested += monthly;
+            }
+
+            const annualPassive = portfolioValue * rYield;
+
+            // Update output fields
+            resInvested.innerText = `$${totalInvested.toLocaleString('en-US', {maximumFractionDigits: 0})}`;
+            resPortfolio.innerText = `$${portfolioValue.toLocaleString('en-US', {maximumFractionDigits: 0})}`;
+            resPassive.innerText = `$${annualPassive.toLocaleString('en-US', {maximumFractionDigits: 0})}`;
+        }
+
+        [rangeInitial, rangeMonthly, rangeYield, rangeYears].forEach(slider => {
+            slider.addEventListener('input', calculateCompounding);
+        });
+
+        // Init
+        calculateCompounding();
+
+        // Reading Progress Bar Script
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('reading-progress-bar').style.width = scrolled + '%';
+        });
+
+        // Highlight TOC Link on Scroll
+        const sections = document.querySelectorAll('.blog-article > div');
+        const tocLinks = document.querySelectorAll('.toc-list a');
+
+        window.addEventListener('scroll', () => {
+            let currentSectionId = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.scrollY >= (sectionTop - 250)) {
+                    currentSectionId = section.getAttribute('id');
+                }
+            });
+            tocLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSectionId}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
