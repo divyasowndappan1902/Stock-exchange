@@ -5,8 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stackly - Customer Dashboard</title>
     <link rel="stylesheet" href="styles.css">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <img src="assets/images/logo.webp" alt="Loading Stackly..." class="preloader-logo">
+    </div>
+
 
     <div class="dashboard-layout">
         <div class="sidebar-overlay"></div>
@@ -89,14 +95,14 @@
             <!-- Content Area -->
             <div class="dashboard-content">
                 
-                <div id="section-portfolio" class="content-section active">
-                    <div class="dashboard-header">
+                <div id="section-portfolio" class="content-section active" data-aos="fade-up">
+                    <div class="dashboard-header" data-aos="fade-up">
                     <h1>My Portfolio</h1>
                     <p>Track your assets, analyze performance, and execute trades.</p>
                 </div>
 
                 <!-- Portfolio Value -->
-                <div class="panel" style="margin-bottom:40px; background:linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(140, 216, 188, 0.05) 100%);">
+                <div class="panel" style="margin-bottom:40px; background:linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(140, 216, 188, 0.05) 100%);" data-aos="fade-up">
                     <div style="display:flex; justify-content:space-between; align-items:flex-end;">
                         <div>
                             <span style="color:var(--text-muted); font-size:16px;">Total Portfolio Value</span>
@@ -118,10 +124,10 @@
                 <div class="dashboard-grid-2">
                     
                     <!-- Watchlist -->
-                    <div class="panel">
-                        <div class="panel-header">
-                            <h2 class="panel-title">My Watchlist</h2>
-                            <a href="#" class="panel-action">Edit</a>
+                    <div class="panel" data-aos="fade-up">
+                        <div class="panel-header" data-aos="fade-up">
+                            <h2 class="panel-title" data-aos="fade-up">My Watchlist</h2>
+                            <a href="#" class="panel-action" data-aos="fade-up">Edit</a>
                         </div>
                         
                         <div style="display:flex; flex-direction:column; gap:15px;">
@@ -176,10 +182,10 @@
                     </div>
 
                     <!-- Recent Transactions -->
-                    <div class="panel">
-                        <div class="panel-header">
-                            <h2 class="panel-title">Recent Transactions</h2>
-                            <a href="#" class="panel-action">View History</a>
+                    <div class="panel" data-aos="fade-up">
+                        <div class="panel-header" data-aos="fade-up">
+                            <h2 class="panel-title" data-aos="fade-up">Recent Transactions</h2>
+                            <a href="#" class="panel-action" data-aos="fade-up">View History</a>
                         </div>
                         
                         <div style="display:flex; flex-direction:column; gap:20px;">
@@ -233,12 +239,12 @@
                 </div>
                 </div>
 
-                <div id="section-market" class="content-section">
-                    <div class="dashboard-header">
+                <div id="section-market" class="content-section" data-aos="fade-up">
+                    <div class="dashboard-header" data-aos="fade-up">
                         <h1>Market Data</h1>
                         <p>Real-time analytics and global market trends.</p>
                     </div>
-                    <div class="panel">
+                    <div class="panel" data-aos="fade-up">
                         <table class="data-table">
                             <thead>
                                 <tr>
@@ -300,12 +306,12 @@
                     </div>
                 </div>
 
-                <div id="section-history" class="content-section">
-                    <div class="dashboard-header">
+                <div id="section-history" class="content-section" data-aos="fade-up">
+                    <div class="dashboard-header" data-aos="fade-up">
                         <h1>Trade History</h1>
                         <p>Your past transactions and order executions.</p>
                     </div>
-                    <div class="panel">
+                    <div class="panel" data-aos="fade-up">
                         <table class="data-table">
                             <thead>
                                 <tr>
@@ -351,14 +357,14 @@
                     </div>
                 </div>
 
-                <div id="section-transfers" class="content-section">
-                    <div class="dashboard-header">
+                <div id="section-transfers" class="content-section" data-aos="fade-up">
+                    <div class="dashboard-header" data-aos="fade-up">
                         <h1>Transfers</h1>
                         <p>Manage deposits, withdrawals, and bank connections.</p>
                     </div>
                     <div class="dashboard-grid-2">
-                        <div class="panel">
-                            <h2 class="panel-title" style="margin-bottom: 20px;">Deposit Funds</h2>
+                        <div class="panel" data-aos="fade-up">
+                            <h2 class="panel-title" style="margin-bottom: 20px;" data-aos="fade-up">Deposit Funds</h2>
                             <form>
                                 <div class="form-group">
                                     <label style="display: block; margin-bottom: 8px; color: var(--text-muted); font-size: 14px;">Select Currency</label>
@@ -375,8 +381,8 @@
                                 <button type="button" class="cta-btn" style="width: 100%;">Initiate Deposit</button>
                             </form>
                         </div>
-                        <div class="panel">
-                            <h2 class="panel-title" style="margin-bottom: 20px;">Withdraw Funds</h2>
+                        <div class="panel" data-aos="fade-up">
+                            <h2 class="panel-title" style="margin-bottom: 20px;" data-aos="fade-up">Withdraw Funds</h2>
                             <form>
                                 <div class="form-group">
                                     <label style="display: block; margin-bottom: 8px; color: var(--text-muted); font-size: 14px;">Withdraw to</label>
@@ -395,12 +401,12 @@
                     </div>
                 </div>
 
-                <div id="section-settings" class="content-section">
-                    <div class="dashboard-header">
+                <div id="section-settings" class="content-section" data-aos="fade-up">
+                    <div class="dashboard-header" data-aos="fade-up">
                         <h1>Settings</h1>
                         <p>Manage your account preferences and security.</p>
                     </div>
-                    <div class="panel" style="max-width: 600px;">
+                    <div class="panel" style="max-width: 600px;" data-aos="fade-up">
                         <form>
                             <div class="form-group">
                                 <label style="display: block; margin-bottom: 8px; color: var(--text-muted); font-size: 14px;">Full Name</label>
@@ -514,5 +520,18 @@
         });
     </script>
     <script src="dummy-handler.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 800,
+        once: true
+    });
+</script>
+
+<script>
+    window.addEventListener('load', function() {
+        document.body.classList.add('loaded');
+    });
+</script>
 </body>
 </html>

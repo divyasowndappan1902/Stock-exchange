@@ -5,8 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stackly - Login</title>
     <link rel="stylesheet" href="styles.css">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <img src="assets/images/logo.webp" alt="Loading Stackly..." class="preloader-logo">
+    </div>
+
 
     <!-- Unique Login Layout -->
     <div class="login-layout">
@@ -26,7 +32,7 @@
 
         <!-- Right Side: Login Form -->
         <div class="login-form-container">
-            <div class="login-box">
+            <div class="login-box" data-aos="fade-up">
                 <h2>Welcome Back</h2>
                 <p>Please enter your details to sign in.</p>
                 
@@ -111,5 +117,18 @@
         });
     </script>
     <script src="dummy-handler.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 800,
+        once: true
+    });
+</script>
+
+<script>
+    window.addEventListener('load', function() {
+        document.body.classList.add('loaded');
+    });
+</script>
 </body>
 </html>

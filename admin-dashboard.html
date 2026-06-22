@@ -5,8 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stackly - Admin Dashboard</title>
     <link rel="stylesheet" href="styles.css">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <img src="assets/images/logo.webp" alt="Loading Stackly..." class="preloader-logo">
+    </div>
+
 
     <div class="dashboard-layout">
         <div class="sidebar-overlay"></div>
@@ -87,15 +93,15 @@
             <!-- Content Area -->
             <div class="dashboard-content">
                 
-                <div id="section-dashboard" class="content-section active">
-                    <div class="dashboard-header">
+                <div id="section-dashboard" class="content-section active" data-aos="fade-up">
+                    <div class="dashboard-header" data-aos="fade-up">
                     <h1>Overview</h1>
                     <p>Welcome back, here's what's happening today.</p>
                 </div>
 
                 <!-- Stats Grid -->
                 <div class="stats-grid">
-                    <div class="stat-card">
+                    <div class="stat-card" data-aos="fade-up">
                         <div class="stat-icon">
                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                         </div>
@@ -106,7 +112,7 @@
                         </div>
                     </div>
                     
-                    <div class="stat-card">
+                    <div class="stat-card" data-aos="fade-up">
                         <div class="stat-icon">
                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         </div>
@@ -117,7 +123,7 @@
                         </div>
                     </div>
                     
-                    <div class="stat-card">
+                    <div class="stat-card" data-aos="fade-up">
                         <div class="stat-icon">
                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
                         </div>
@@ -128,7 +134,7 @@
                         </div>
                     </div>
 
-                    <div class="stat-card">
+                    <div class="stat-card" data-aos="fade-up">
                         <div class="stat-icon">
                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
                         </div>
@@ -143,10 +149,10 @@
                 <div class="dashboard-grid-2">
                     
                     <!-- Recent Activity Table -->
-                    <div class="panel">
-                        <div class="panel-header">
-                            <h2 class="panel-title">Recent User Activity</h2>
-                            <a href="#" class="panel-action">View All</a>
+                    <div class="panel" data-aos="fade-up">
+                        <div class="panel-header" data-aos="fade-up">
+                            <h2 class="panel-title" data-aos="fade-up">Recent User Activity</h2>
+                            <a href="#" class="panel-action" data-aos="fade-up">View All</a>
                         </div>
                         
                         <table class="data-table">
@@ -208,9 +214,9 @@
                     </div>
 
                     <!-- Placeholder Chart / System Status -->
-                    <div class="panel">
-                        <div class="panel-header">
-                            <h2 class="panel-title">System Status</h2>
+                    <div class="panel" data-aos="fade-up">
+                        <div class="panel-header" data-aos="fade-up">
+                            <h2 class="panel-title" data-aos="fade-up">System Status</h2>
                         </div>
                         <div style="display:flex; flex-direction:column; gap:20px;">
                             <div style="display:flex; justify-content:space-between; align-items:center;">
@@ -228,7 +234,7 @@
                         </div>
                         
                         <div style="margin-top:40px;">
-                            <h2 class="panel-title" style="margin-bottom: 15px;">Server Load</h2>
+                            <h2 class="panel-title" style="margin-bottom: 15px;" data-aos="fade-up">Server Load</h2>
                             <!-- Pseudo Chart -->
                             <div style="height: 120px; display:flex; align-items:flex-end; gap:5px; padding-top: 20px; border-bottom:1px solid rgba(255,255,255,0.1);">
                                 <div style="flex:1; background:var(--accent-color); height:30%; opacity:0.6; border-radius:3px 3px 0 0;"></div>
@@ -245,14 +251,14 @@
                 </div>
                 </div>
 
-                <div id="section-users" class="content-section">
-                    <div class="dashboard-header">
+                <div id="section-users" class="content-section" data-aos="fade-up">
+                    <div class="dashboard-header" data-aos="fade-up">
                         <h1>User Management</h1>
                         <p>Manage platform users, roles, and permissions.</p>
                     </div>
-                    <div class="panel">
-                        <div class="panel-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                            <h2 class="panel-title">All Users</h2>
+                    <div class="panel" data-aos="fade-up">
+                        <div class="panel-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;" data-aos="fade-up">
+                            <h2 class="panel-title" data-aos="fade-up">All Users</h2>
                             <div style="display: flex; gap: 10px;">
                                 <input type="text" class="form-control" placeholder="Search users..." style="padding: 8px 12px; font-size: 13px;">
                                 <select class="form-control" style="padding: 8px 12px; font-size: 13px; appearance: none; background: rgba(255,255,255,0.05);">
@@ -300,14 +306,14 @@
                     </div>
                 </div>
 
-                <div id="section-approvals" class="content-section">
-                    <div class="dashboard-header">
+                <div id="section-approvals" class="content-section" data-aos="fade-up">
+                    <div class="dashboard-header" data-aos="fade-up">
                         <h1>Trade Approvals</h1>
                         <p>Review and approve high-value transactions.</p>
                     </div>
                     <div class="dashboard-grid-2">
-                        <div class="panel">
-                            <h2 class="panel-title" style="margin-bottom: 20px;">Pending Approvals (2)</h2>
+                        <div class="panel" data-aos="fade-up">
+                            <h2 class="panel-title" style="margin-bottom: 20px;" data-aos="fade-up">Pending Approvals (2)</h2>
                             <div style="display: flex; flex-direction: column; gap: 15px;">
                                 <div style="background: rgba(255,255,255,0.02); padding: 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
                                     <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
@@ -338,8 +344,8 @@
                             </div>
                         </div>
                         
-                        <div class="panel">
-                            <h2 class="panel-title" style="margin-bottom: 20px;">Recent Approval History</h2>
+                        <div class="panel" data-aos="fade-up">
+                            <h2 class="panel-title" style="margin-bottom: 20px;" data-aos="fade-up">Recent Approval History</h2>
                             <table class="data-table">
                                 <thead>
                                     <tr>
@@ -368,14 +374,14 @@
                     </div>
                 </div>
 
-                <div id="section-compliance" class="content-section">
-                    <div class="dashboard-header">
+                <div id="section-compliance" class="content-section" data-aos="fade-up">
+                    <div class="dashboard-header" data-aos="fade-up">
                         <h1>Compliance</h1>
                         <p>KYC/AML verification and regulatory reporting.</p>
                     </div>
                     <div class="dashboard-grid-2">
-                        <div class="panel">
-                            <h2 class="panel-title" style="margin-bottom: 15px;">Pending KYC Reviews</h2>
+                        <div class="panel" data-aos="fade-up">
+                            <h2 class="panel-title" style="margin-bottom: 15px;" data-aos="fade-up">Pending KYC Reviews</h2>
                             <div style="display:flex; justify-content:space-between; padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.05);">
                                 <div><div style="font-weight:600;">David Smith</div><div style="font-size:12px; color:var(--text-muted);">ID Match: 95%</div></div>
                                 <button class="cta-btn" style="padding: 5px 10px; font-size:12px;">Review</button>
@@ -385,8 +391,8 @@
                                 <button class="cta-btn" style="padding: 5px 10px; font-size:12px; background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color);">Review</button>
                             </div>
                         </div>
-                        <div class="panel">
-                            <h2 class="panel-title" style="margin-bottom: 15px;">AML Alerts</h2>
+                        <div class="panel" data-aos="fade-up">
+                            <h2 class="panel-title" style="margin-bottom: 15px;" data-aos="fade-up">AML Alerts</h2>
                             <div style="background: rgba(248, 113, 113, 0.1); border-left: 3px solid #f87171; padding: 15px; border-radius: 4px;">
                                 <div style="font-weight:600; color:#f87171;">Suspicious Transaction Pattern</div>
                                 <div style="font-size:13px; margin-top:5px; color:var(--text-muted);">Account ID #55982 initiated 15 crypto withdrawals in 2 hours just under the reporting threshold.</div>
@@ -395,12 +401,12 @@
                     </div>
                 </div>
 
-                <div id="section-settings" class="content-section">
-                    <div class="dashboard-header">
+                <div id="section-settings" class="content-section" data-aos="fade-up">
+                    <div class="dashboard-header" data-aos="fade-up">
                         <h1>Settings</h1>
                         <p>Global platform configuration and preferences.</p>
                     </div>
-                    <div class="panel" style="max-width: 600px;">
+                    <div class="panel" style="max-width: 600px;" data-aos="fade-up">
                         <form>
                             <div class="form-group">
                                 <label style="display: block; margin-bottom: 8px; color: var(--text-muted); font-size: 14px;">Platform Name</label>
@@ -506,5 +512,18 @@
         });
     </script>
     <script src="dummy-handler.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 800,
+        once: true
+    });
+</script>
+
+<script>
+    window.addEventListener('load', function() {
+        document.body.classList.add('loaded');
+    });
+</script>
 </body>
 </html>

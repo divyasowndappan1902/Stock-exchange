@@ -817,3 +817,115 @@ footer { background: #05140f; padding: 80px 5% 30px; border-top: 1px solid rgba(
   .topbar-actions { gap: 10px; }
   .action-icon svg { width: 20px; height: 20px; }
 }
+
+/* --- Premium Hover Effects --- */
+
+/* Ticker Pause and Highlight */
+.ticker-wrap:hover {
+  animation-play-state: paused;
+}
+.ticker-item {
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+.ticker-wrap:hover .ticker-item {
+  filter: blur(2px) opacity(0.7);
+}
+.ticker-wrap .ticker-item:hover {
+  filter: blur(0) opacity(1);
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+/* Panel Glow on Hover */
+.panel {
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+}
+.panel:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 0 20px rgba(140, 216, 188, 0.1);
+  border-color: rgba(140, 216, 188, 0.3);
+}
+
+/* Stat Card Enhancement */
+.stat-card:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2), inset 0 0 0 1px var(--accent-color);
+}
+.stat-card:hover .stat-icon {
+  transform: scale(1.1) rotate(5deg);
+  background: var(--accent-color);
+  color: var(--primary-color);
+  box-shadow: 0 5px 15px rgba(140, 216, 188, 0.4);
+}
+.stat-icon {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Data Table Row Hover */
+.data-table tr {
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+.data-table tr:hover td {
+  background: rgba(255, 255, 255, 0.05);
+}
+.data-table tbody tr:hover {
+  transform: scale(1.01);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  position: relative;
+}
+
+/* Input Fields Glow */
+.form-control:focus {
+  box-shadow: 0 0 0 3px rgba(140, 216, 188, 0.25);
+}
+
+/* Social Icons Pop */
+.social-icons a:hover {
+  transform: translateY(-5px) scale(1.15);
+  box-shadow: 0 10px 20px rgba(140, 216, 188, 0.3);
+}
+
+/* Image Placeholder Zoom Effect */
+.img-placeholder {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
+}
+.img-placeholder:hover {
+  transform: scale(1.03);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Button Extra Glow */
+.cta-btn:hover {
+  box-shadow: 0 15px 35px rgba(196, 240, 106, 0.4), 0 0 20px rgba(196, 240, 106, 0.2);
+}
+
+/* --- Preloader --- */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--primary-color);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.preloader-logo {
+  height: 60px;
+  animation: pulseLogo 1.5s ease-in-out infinite;
+}
+
+@keyframes pulseLogo {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.15); opacity: 1; filter: drop-shadow(0 0 15px rgba(140, 216, 188, 0.4)); }
+  100% { transform: scale(1); opacity: 0.8; }
+}
+
+body.loaded #preloader {
+  opacity: 0;
+  visibility: hidden;
+}

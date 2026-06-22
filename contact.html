@@ -6,8 +6,14 @@
     <title>Stackly - Contact Us</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <img src="assets/images/logo.webp" alt="Loading Stackly..." class="preloader-logo">
+    </div>
+
 
     <!-- Header / Navigation -->
     <header>
@@ -28,17 +34,17 @@
     </header>
 
     <!-- Section 1: Page Header -->
-    <section class="page-header">
+    <section class="page-header" data-aos="fade-up">
         <h1>Contact Us</h1>
         <p>Get in touch with our team for support, business inquiries, or technical assistance.</p>
     </section>
 
     <!-- Section 2 & 3: Contact Form & Info (Combined Layout) -->
-    <section class="section-light">
+    <section class="section-light" data-aos="fade-up">
         <div class="container grid-2" style="align-items: flex-start;">
             <!-- Contact Information -->
             <div>
-                <h2 class="section-title" style="text-align: left; margin-bottom: 40px;">How Can We Help?</h2>
+                <h2 class="section-title" style="text-align: left; margin-bottom: 40px;" data-aos="fade-up">How Can We Help?</h2>
                 <div style="margin-bottom: 30px;">
                     <h3 style="font-size: 20px; color: var(--primary-color); margin-bottom: 10px; display: flex; align-items: center; gap: 10px;">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
@@ -63,7 +69,7 @@
             </div>
             
             <!-- Contact Form -->
-            <div class="card" style="background: white; border: 1px solid #eee; box-shadow: 0 15px 40px rgba(0,0,0,0.05);">
+            <div class="card" style="background: white; border: 1px solid #eee; box-shadow: 0 15px 40px rgba(0,0,0,0.05);" data-aos="fade-up">
                 <form>
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Full Name" required>
@@ -90,9 +96,9 @@
     </section>
 
     <!-- Section 4: Global Offices Map -->
-    <section class="section-dark">
+    <section class="section-dark" data-aos="fade-up">
         <div class="container">
-            <h2 class="section-title">Our Offices</h2>
+            <h2 class="section-title" data-aos="fade-up">Our Offices</h2>
             <div class="img-placeholder" style="height: 500px; background: url('assets/images/global_map.webp') center/cover; border: 1px solid rgba(255,255,255,0.1);">Interactive Global Map Placeholder</div>
             <div class="grid-3 mt-4 text-center">
                 <div>
@@ -112,16 +118,16 @@
     </section>
 
     <!-- Section 5: FAQ -->
-    <section class="section-light">
+    <section class="section-light" data-aos="fade-up">
         <div class="container" style="max-width: 800px;">
-            <h2 class="section-title">Frequently Asked Questions</h2>
+            <h2 class="section-title" data-aos="fade-up">Frequently Asked Questions</h2>
             
             <div style="border-bottom: 1px solid #ddd; padding: 20px 0;">
                 <h3 style="font-size: 18px; color: var(--primary-color); cursor: pointer; display: flex; justify-content: space-between;">
                     How do I open an account?
                     <span>+</span>
                 </h3>
-                <p class="text-muted" style="margin-top: 15px; display: none;">Click the "Login" button, select "Create Account", and follow the on-screen instructions to submit your identity documents.</p>
+                <p class="text-muted" style="margin-top: 15px; display: none;">Click the"Login" button, select"Create Account", and follow the on-screen instructions to submit your identity documents.</p>
             </div>
             
             <div style="border-bottom: 1px solid #ddd; padding: 20px 0;">
@@ -155,7 +161,7 @@
     <footer>
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-col">
+                <div class="footer-col" data-aos="fade-up">
                     <div class="logo-container" style="margin-bottom: 20px;">
                         <img src="assets/images/logo.webp" alt="Stackly Logo" style="height: 55px;">
                     </div>
@@ -166,7 +172,7 @@
                         <a href="#"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
-                <div class="footer-col">
+                <div class="footer-col" data-aos="fade-up">
                     <h4>Quick Links</h4>
                     <ul class="footer-links">
                         <li><a href="404.html">About Us</a></li>
@@ -175,7 +181,7 @@
                         <li><a href="404.html">Contact Us</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
+                <div class="footer-col" data-aos="fade-up">
                     <h4>Legal</h4>
                     <ul class="footer-links">
                         <li><a href="#">Terms of Service</a></li>
@@ -184,7 +190,7 @@
                         <li><a href="#">Cookie Policy</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
+                <div class="footer-col" data-aos="fade-up">
                     <h4>Contact</h4>
                     <ul class="footer-links">
                         <li><span style="color: var(--text-muted)"><i class="fas fa-envelope" style="margin-right: 8px;"></i>Email:</span><br><a href="mailto:support@Stackly.com">support@Stackly.com</a></li>
@@ -199,5 +205,18 @@
     </footer>
 
     <script src="dummy-handler.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 800,
+        once: true
+    });
+</script>
+
+<script>
+    window.addEventListener('load', function() {
+        document.body.classList.add('loaded');
+    });
+</script>
 </body>
 </html>

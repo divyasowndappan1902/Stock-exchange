@@ -38,13 +38,32 @@
             margin-bottom: 30px;
         }
     </style>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <img src="assets/images/logo.webp" alt="Loading Stackly..." class="preloader-logo">
+    </div>
+
     <div class="error-container">
         <div class="error-code">404</div>
         <h1 class="error-title">Page Not Found</h1>
         <p class="error-msg">Oops! The page or feature you are looking for is currently under construction or does not exist.</p>
         <button onclick="window.history.back()" class="cta-btn" style="width: 100%; justify-content: center; border: none; cursor: pointer;">Go Back</button>
     </div>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 800,
+        once: true
+    });
+</script>
+
+<script>
+    window.addEventListener('load', function() {
+        document.body.classList.add('loaded');
+    });
+</script>
 </body>
 </html>

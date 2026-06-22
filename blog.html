@@ -6,8 +6,14 @@
     <title>Stackly - Trading Blog</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <img src="assets/images/logo.webp" alt="Loading Stackly..." class="preloader-logo">
+    </div>
+
 
     <!-- Header / Navigation -->
     <header>
@@ -28,15 +34,15 @@
     </header>
 
     <!-- Section 1: Page Header -->
-    <section class="page-header">
+    <section class="page-header" data-aos="fade-up">
         <h1>Trading Insights</h1>
         <p>Market news, expert analysis, and educational resources to help you trade smarter.</p>
     </section>
 
     <!-- Section 2: Featured Article -->
-    <section class="section-light">
+    <section class="section-light" data-aos="fade-up">
         <div class="container">
-            <h2 class="section-title" style="text-align: left;">Featured Article</h2>
+            <h2 class="section-title" style="text-align: left;" data-aos="fade-up">Featured Article</h2>
             <div class="grid-2" style="background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.05);">
                 <div style="height: 100%; min-height: 400px; background: url('assets/images/featured_blog.webp') center/cover;"></div>
                 <div style="padding: 50px;">
@@ -50,7 +56,7 @@
     </section>
 
     <!-- Section 3: Categories -->
-    <section class="section-dark">
+    <section class="section-dark" data-aos="fade-up">
         <div class="container">
             <div class="grid-4 text-center">
                 <a href="#" style="text-decoration: none; display: block;" class="card">
@@ -70,11 +76,11 @@
     </section>
 
     <!-- Section 4: Recent Posts Grid -->
-    <section class="section-light">
+    <section class="section-light" data-aos="fade-up">
         <div class="container">
-            <h2 class="section-title">Recent Posts</h2>
+            <h2 class="section-title" data-aos="fade-up">Recent Posts</h2>
             <div class="grid-3">
-                <div class="card" style="padding: 0; overflow: hidden;">
+                <div class="card" style="padding: 0; overflow: hidden;" data-aos="fade-up">
                     <div style="height: 200px; background: url('assets/images/blog_indicator.webp') center/cover;"></div>
                     <div style="padding: 25px;">
                         <span style="color: var(--secondary-color); font-size: 12px; font-weight: 700;">Jun 15, 2026</span>
@@ -83,7 +89,7 @@
                         <a href="#" style="color: var(--primary-color); font-weight: 700; text-decoration: none;">Read More &rarr;</a>
                     </div>
                 </div>
-                <div class="card" style="padding: 0; overflow: hidden;">
+                <div class="card" style="padding: 0; overflow: hidden;" data-aos="fade-up">
                     <div style="height: 200px; background: url('assets/images/blog_risk.webp') center/cover;"></div>
                     <div style="padding: 25px;">
                         <span style="color: var(--secondary-color); font-size: 12px; font-weight: 700;">Jun 12, 2026</span>
@@ -92,7 +98,7 @@
                         <a href="#" style="color: var(--primary-color); font-weight: 700; text-decoration: none;">Read More &rarr;</a>
                     </div>
                 </div>
-                <div class="card" style="padding: 0; overflow: hidden;">
+                <div class="card" style="padding: 0; overflow: hidden;" data-aos="fade-up">
                     <div style="height: 200px; background: url('assets/images/blog_platform.webp') center/cover;"></div>
                     <div style="padding: 25px;">
                         <span style="color: var(--secondary-color); font-size: 12px; font-weight: 700;">Jun 08, 2026</span>
@@ -106,9 +112,9 @@
     </section>
 
     <!-- Section 5: Newsletter Subscribe -->
-    <section class="section-dark text-center" style="background: linear-gradient(135deg, var(--secondary-color), var(--primary-light));">
+    <section class="section-dark text-center" style="background: linear-gradient(135deg, var(--secondary-color), var(--primary-light));" data-aos="fade-up">
         <div class="container" style="max-width: 600px;">
-            <h2 class="section-title" style="color: white;">Subscribe to our Newsletter</h2>
+            <h2 class="section-title" style="color: white;" data-aos="fade-up">Subscribe to our Newsletter</h2>
             <p class="section-subtitle" style="color: rgba(255,255,255,0.8); margin-bottom: 30px;">Get weekly market briefings and trade setups delivered straight to your inbox. No spam, ever.</p>
             <form style="display: flex; gap: 10px;">
                 <input type="email" placeholder="Enter your email address" class="form-control" style="background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.3); color: white;">
@@ -121,7 +127,7 @@
     <footer>
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-col">
+                <div class="footer-col" data-aos="fade-up">
                     <div class="logo-container" style="margin-bottom: 20px;">
                         <img src="assets/images/logo.webp" alt="Stackly Logo" style="height: 55px;">
                     </div>
@@ -132,7 +138,7 @@
                         <a href="#"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
-                <div class="footer-col">
+                <div class="footer-col" data-aos="fade-up">
                     <h4>Quick Links</h4>
                     <ul class="footer-links">
                         <li><a href="404.html">About Us</a></li>
@@ -141,7 +147,7 @@
                         <li><a href="404.html">Contact Us</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
+                <div class="footer-col" data-aos="fade-up">
                     <h4>Legal</h4>
                     <ul class="footer-links">
                         <li><a href="#">Terms of Service</a></li>
@@ -150,7 +156,7 @@
                         <li><a href="#">Cookie Policy</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
+                <div class="footer-col" data-aos="fade-up">
                     <h4>Contact</h4>
                     <ul class="footer-links">
                         <li><span style="color: var(--text-muted)"><i class="fas fa-envelope" style="margin-right: 8px;"></i>Email:</span><br><a href="mailto:support@Stackly.com">support@Stackly.com</a></li>
@@ -165,5 +171,18 @@
     </footer>
 
     <script src="dummy-handler.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 800,
+        once: true
+    });
+</script>
+
+<script>
+    window.addEventListener('load', function() {
+        document.body.classList.add('loaded');
+    });
+</script>
 </body>
 </html>
