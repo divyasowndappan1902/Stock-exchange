@@ -24,8 +24,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Redirect dummy buttons and links to 404 page
-    const dummyButtons = document.querySelectorAll('button:not([type="submit"]):not([onclick]):not(.mobile-menu-toggle)');
+    const dummyButtons = document.querySelectorAll(
+        'button:not([onclick]):not(.mobile-menu-toggle)'
+    );
     dummyButtons.forEach(btn => {
+        // Skip explicit submit buttons
+        if (btn.getAttribute('type') === 'submit') return;
+        // Skip implicit submit buttons inside forms
+        if (btn.closest('form') && btn.getAttribute('type') !== 'button') return;
+        
         btn.addEventListener('click', (e) => {
             e.preventDefault();
             window.location.href = '404.html';
@@ -39,6 +46,36 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = '404.html';
         });
     });
+
+    // FAQ Accordion Toggle
+    const faqHeaders = document.querySelectorAll('h3[style*="cursor: pointer"]');
+    faqHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            const answer = header.nextElementSibling;
+            const icon = header.querySelector('span');
+            
+            if (answer && answer.tagName.toLowerCase() === 'p') {
+                if (answer.style.display === 'none') {
+                    // Open
+                    answer.style.display = 'block';
+                    if (icon) icon.textContent = '-';
+                } else {
+                    // Close
+                    answer.style.display = 'none';
+                    if (icon) icon.textContent = '+';
+                }
+            }
+        });
+    });
+
+    // Contact Form Submission
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            window.location.href = '404.html';
+        });
+    }
 });
 
 window.addEventListener('load', () => {
