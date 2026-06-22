@@ -22,4 +22,21 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // Redirect dummy buttons and links to 404 page
+    const dummyButtons = document.querySelectorAll('button:not([type="submit"]):not([onclick]):not(.mobile-menu-toggle)');
+    dummyButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.href = '404.html';
+        });
+    });
+
+    const dummyLinks = document.querySelectorAll('a[href="#"]:not(.sidebar-link)');
+    dummyLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.href = '404.html';
+        });
+    });
 });
