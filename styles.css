@@ -111,7 +111,7 @@ nav ul li a:hover, nav ul li a.active { color: var(--primary-light); }
 
 /* Hero Section */
 .hero {
-  height: 100vh; margin-top: 0; background-image: url('assets/images/hero_bg.png');
+  height: 100vh; margin-top: 0; background-image: url('assets/images/hero_bg.webp');
   background-size: cover; background-position: center; display: flex; align-items: center; padding: 0 5%;
 }
 .hero::before {
